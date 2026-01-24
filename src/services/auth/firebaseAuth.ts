@@ -26,7 +26,12 @@ const notifyObservers = (user: User | null) => {
   observers.forEach((callback) => callback(user));
 };
 
+let isAuthReady = false;
+let lastKnownUser: User | null = null;
+
 onAuthStateChanged(auth, async (firebaseUser) => {
+    let userToNotify: User | null = null;
+    
     if (firebaseUser) {
         try {
             const userRef = ref(db, `users/${firebaseUser.uid}`);
@@ -56,8 +61,10 @@ onAuthStateChanged(auth, async (firebaseUser) => {
             notifyObservers(null);
         }
     } else {
-        notifyObservers(null);
+      notifyObservers(null);
     }
+    lastKnownUser = userToNotify;
+    isAuthReady = true
 });
 
 export const firebaseAuth: AuthAPI = {
@@ -137,6 +144,10 @@ export const firebaseAuth: AuthAPI = {
 
   onAuthStateChange(callback) {
     observers.push(callback);
+
+    if (isAuthReady) {
+        callback(lastKnownUser);
+    }
 
     return () => {
       observers = observers.filter(obs => obs !== callback);

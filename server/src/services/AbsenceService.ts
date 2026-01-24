@@ -22,7 +22,7 @@ export class AbsenceService {
     return dateToCheck < today;
   }
 
-  async createAbsence(data: AbsenceDto) {
+async createAbsence(data: AbsenceDto) {
     if (this.isDateInPast(data.date)) {
         throw new Error("Nie można dodać nieobecności w przeszłości.");
     }
@@ -30,7 +30,6 @@ export class AbsenceService {
     const id = await this.db.saveAbsence(data);
 
     const allAppointments = await this.db.getAppointments(data.doctorId);
-    
     const absenceDateString = new Date(data.date).toISOString().split('T')[0];
 
     const conflictingAppointments = allAppointments.filter((appt: any) => {
@@ -44,7 +43,7 @@ export class AbsenceService {
     for (const appt of conflictingAppointments) {
         this.io.to(appt.patientId).emit('notification', {
             type: 'ALERT',
-            message: `Twoja wizyta w dniu ${absenceDateString} została odwołana przez lekarza z powodu nieobecności.`
+            message: `Twoja wizyta w dniu ${absenceDateString} została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.`
         });
 
         try {
@@ -55,7 +54,9 @@ export class AbsenceService {
     }
 
     this.io.emit('DATA_CHANGED', { resource: 'absences' });
+    this.io.emit('DATA_CHANGED', { resource: 'appointments' });
+    this.io.emit('DATA_CHANGED', { resource: 'users' });
     
     return id;
-  }
+}
 }

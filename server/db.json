@@ -47,8 +47,8 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTI0NTQzMSwiZXhwIjoxNzY5ODUwMjMxfQ.dUvcyzerq-SYIkJLCjl2YV3XGj2fFMsLSGYq4matzm0",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MjQ1NDMxLCJleHAiOjE3NjkyNDU0OTF9.ga1mC7QP8xEWDa93mUCV_9A3kL390tvaHXNEmci27P0"
+      "activeRefreshToken": null,
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MjYwNzk3LCJleHAiOjE3NjkyNjA4NTd9.oGfnMsXWcEMfjZwrVgrKC9VVPbC4SoX2_rvcPXCJGao"
     },
     "user_1767527070737": {
       "email": "rchojnacki@gmail.com",
@@ -60,9 +60,9 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": null,
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsImlhdCI6MTc2OTI2MDgxOCwiZXhwIjoxNzY5ODY1NjE4fQ.zvwkfFMCGN4_vEoiOYRt7Ig00WHYosxDhkc_a0ZNcQ4",
       "doctorId": "doc_1767527003678_37wu220so",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6InJjaG9qbmFja2lAZ21haWwuY29tIiwiaWF0IjoxNzY5MjQ0ODQwLCJleHAiOjE3NjkyNDQ5MDB9.jXLUsgRQAd-6rceJU2-ydvI3Tq7WUIXckZNqHfqfgVg"
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6InJjaG9qbmFja2lAZ21haWwuY29tIiwiaWF0IjoxNzY5MjYxMDgwLCJleHAiOjE3NjkyNjExNDB9.T5A3i00mfxouKoEqge9i_vjbXPRKq8U7vhixehhjfdw"
     },
     "user_1767529854942": {
       "email": "jwidawska@gmail.com",
@@ -212,6 +212,20 @@
       "activeRefreshToken": null,
       "walletBalance": 1000,
       "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2ODk5NDM4OTIyMCIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJkb21hYnVAZ21haWwuY29tIiwiaWF0IjoxNzY4OTk0NTM2LCJleHAiOjE3Njg5OTQ1OTZ9.pgevpQx9UPLu92joxxe3pyOZst3ErLpnsRDYQoZ8apM"
+    },
+    "user_1769260315119": {
+      "email": "kklimek@gmail.com",
+      "id": "user_1769260315119",
+      "password": "$2b$10$kfyRO7ZXbCrgoz5rwDitROOwv2dgkL2DFcT0lUJfkgwCFGnaJV0yO",
+      "firstName": "Krzysztof",
+      "lastName": "Klimek",
+      "role": "patient",
+      "pesel": "",
+      "phoneNumber": "",
+      "isBanned": false,
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsImlhdCI6MTc2OTI2MDk5NywiZXhwIjoxNzY5ODY1Nzk3fQ.cL0Rx5VAEyPmf1KfvHKPl10Hl1_JDBMpDXusfIUGTdk",
+      "walletBalance": 1000,
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJra2xpbWVrQGdtYWlsLmNvbSIsImlhdCI6MTc2OTI2MTA3OSwiZXhwIjoxNzY5MjYxMTM5fQ.XJ3jXH4_otZKSuFfq2Z7DekdEvTJibIfZauv9OixlRk"
     }
   },
   "absences": {
@@ -430,6 +444,24 @@
       "reason": "nie ma mnie",
       "type": "ABSENCE",
       "id": "abs_1768994536707_ve8vblh09"
+    },
+    "abs_1769260408316_87znuuhks": {
+      "doctorId": "doc_1767527003678_37wu220so",
+      "date": "2026-03-02T00:00:00.000Z",
+      "startTime": "00:00",
+      "endTime": "23:59",
+      "reason": "",
+      "type": "ABSENCE",
+      "id": "abs_1769260408316_87znuuhks"
+    },
+    "abs_1769261079258_ba53i08rh": {
+      "doctorId": "doc_1767527003678_37wu220so",
+      "date": "2026-03-16T00:00:00.000Z",
+      "startTime": "00:00",
+      "endTime": "23:59",
+      "reason": "",
+      "type": "ABSENCE",
+      "id": "abs_1769261079258_ba53i08rh"
     }
   },
   "availabilities": {
@@ -594,10 +626,27 @@
         }
       ],
       "id": "avail_1768082427583_2nzbd4mms"
+    },
+    "avail_1769260352484_mw46b78lg": {
+      "doctorId": "doc_1767527003678_37wu220so",
+      "validFrom": "2026-03-02",
+      "validTo": "2026-03-28",
+      "weekdays": [
+        1,
+        5,
+        3
+      ],
+      "timeRanges": [
+        {
+          "from": "09:00",
+          "to": "16:00"
+        }
+      ],
+      "id": "avail_1769260352484_mw46b78lg"
     }
   },
   "system_config": {
-    "persistenceMode": "NONE"
+    "persistenceMode": "SESSION"
   },
   "reviews": []
 }

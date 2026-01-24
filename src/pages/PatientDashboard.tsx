@@ -133,6 +133,7 @@ export const PatientDashboard = ({ userId }: PatientDashboardProps) => {
         for (const appt of appointmentsToPay) {
             await backend.payForAppointment(appt.id, appt.cost, user.id);
         }
+        await refreshUser(); 
         return true;
     } catch (e: any) {
         console.error(e);

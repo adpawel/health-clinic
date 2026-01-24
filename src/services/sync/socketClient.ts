@@ -13,11 +13,14 @@ class SocketClient {
         this.socket.disconnect();
     }
 
-    this.socket = io({
+    this.socket = io("/", {
       path: '/socket.io/',
       autoConnect: true,
+      reconnection: true,
+      reconnectionAttempts: 10,
+      reconnectionDelay: 1000,
       query: userId ? { userId } : {},
-      transports: ['websocket', 'polling']
+      transports: ['websocket']
     });
 
     this.socket.on('connect', () => {
@@ -27,6 +30,10 @@ class SocketClient {
 
     this.socket.on('disconnect', () => {
       console.log('[Socket] Disconnected');
+    });
+
+    this.socket.on('connect_error', (err) => {
+      console.error('[Socket] Connection Error:', err.message);
     });
 
     this.flushPendingHandlers();

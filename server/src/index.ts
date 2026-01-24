@@ -39,21 +39,19 @@ const saveConfig = (newConfig: any) => {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigin = process.env.CLIENT_URL || "http://localhost";
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigin,
+    origin: "*",        
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: false  
   }
 });
 
 app.use(cors({
-    origin: allowedOrigin,
-    credentials: true
+    origin: "*",  
+    credentials: false  
 }));
 app.use(bodyParser.json());
 

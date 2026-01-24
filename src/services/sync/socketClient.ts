@@ -13,9 +13,11 @@ class SocketClient {
         this.socket.disconnect();
     }
 
-    this.socket = io("http://localhost:3000", {
+    this.socket = io({
+      path: '/socket.io/',
       autoConnect: true,
-      query: userId ? { userId } : {} 
+      query: userId ? { userId } : {},
+      transports: ['websocket', 'polling']
     });
 
     this.socket.on('connect', () => {

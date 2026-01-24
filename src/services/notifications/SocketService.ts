@@ -26,7 +26,7 @@ export const SocketNotificationService: NotificationServiceAPI = {
   disconnect() {
   },
 
-  async send(notification: AppNotification) {
+  async send(_notification: AppNotification) {
      console.warn("W wersji Node, powiadomienia wysyła backend automatycznie.");
   }
 };

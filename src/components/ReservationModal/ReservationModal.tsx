@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { AppointmentDto } from "../../interfaces/interfaces";
-import { useAuth } from "../../hooks/AuthContext";
 
 interface ReservationModalProps {
   show: boolean;
@@ -28,7 +27,6 @@ const ReservationModal = ({ show, onClose, onSave, date, hour, doctorId, patient
   const [type, setType] = useState(consultationTypes[0]);
   const [duration, setDuration] = useState<number>(30);
   const [notes, setNotes] = useState("");
-  const { user } = useAuth();
 
   if (!show) return null;
 

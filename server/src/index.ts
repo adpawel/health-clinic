@@ -37,17 +37,20 @@ const saveConfig = (newConfig: any) => {
 };
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "*", 
     methods: ["GET", "POST"]
   }
 });
 
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL || "*",
+    credentials: true
+}));
 app.use(bodyParser.json());
 
 let currentConfig = loadConfig();
@@ -342,5 +345,5 @@ app.delete('/reviews/:reviewId', authenticateToken, requireRole(['patient', 'adm
 });
 
 server.listen(PORT, () => {
-  console.log(`Backend (HTTP + WebSocket) działa na http://localhost:${PORT}`);
+  console.log(`Backend (HTTP + WebSocket) działa`);
 });

@@ -2,7 +2,7 @@ import type { User } from "../../interfaces/interfaces";
 import type { AuthAPI } from "./auth.types";
 import { TokenManager } from "./TokenManager";
 
-const API_URL = "http://localhost:3000/api/auth";
+const API_URL = "/api/auth";
 
 // 1. Tablica do przechowywania funkcji nasłuchujących (to są te funkcje z AuthContext)
 let observers: ((user: User | null) => void)[] = [];

@@ -52,17 +52,14 @@ const DoctorCalendar = ({appointments, absences, availabilitySlots}: DoctorCalen
 
     let backgroundClass = "";
     let textClass = "";
-    let cursorStyle = {};
 
     if (isAvailable) {
         if (isPast) {
             backgroundClass = "bg-secondary bg-opacity-25";
             textClass = "text-secondary";
-            cursorStyle = { pointerEvents: 'none', cursor: 'default' };
         } else {
             backgroundClass = "bg-success bg-opacity-10";
             textClass = "text-success";
-            cursorStyle = { cursor: 'pointer' };
         }
     }
 

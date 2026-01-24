@@ -20,12 +20,11 @@ let refreshPromise: Promise<string | null> | null = null;
 export class HttpBackendAPI implements BackendAPI {
   private baseUrl: string;
   
-  constructor(baseUrl: string = 'http://localhost:3000') {
+  constructor(baseUrl: string = '') {
     this.baseUrl = baseUrl;
   }
 
   private async performRefresh(): Promise<string | null> {
-    // Jeśli odświeżanie już trwa, zwracamy istniejącą obietnicę (wszyscy czekają na ten sam wynik)
     if (isRefreshing && refreshPromise) {
       return refreshPromise;
     }
@@ -220,7 +219,7 @@ export class HttpBackendAPI implements BackendAPI {
     return this.request<Review[]>(`/doctors/${doctorId}/reviews`);
   }
 
-  async addReview(review: ReviewDto, patientId: string, patientName: string): Promise<Review> {
+  async addReview(review: ReviewDto, _patientId: string, patientName: string): Promise<Review> {
     return this.request<Review>('/reviews', 'POST', {
       ...review,
       patientName

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "doc_1",
+    "firstName": "Jan",
+    "lastName": "Kowalski",
+    "title": "dr n. med.",
+    "specializations": ["Kardiolog", "Internista"]
+  },
+  {
+    "id": "doc_2",
+    "firstName": "Anna",
+    "lastName": "Nowak",
+    "title": "lek.",
+    "specializations": ["Pediatra"]
+  },
+  {
+    "id": "doc_3",
+    "firstName": "Michał",
+    "lastName": "Wiśniewski",
+    "title": "prof.",
+    "specializations": ["Chirurg", "Ortopeda"]
+  },
+  {
+    "id": "doc_4",
+    "firstName": "Ewa",
+    "lastName": "Lewandowska",
+    "title": "lek. stom.",
+    "specializations": ["Stomatolog"]
+  },
+  {
+    "id": "doc_5",
+    "firstName": "Tomasz",
+    "lastName": "Zieliński",
+    "title": "dr hab.",
+    "specializations": ["Dermatolog", "Wenerolog"]
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin'",
+        ".write": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin'"
+      }
+    },
+
+    "appointments": {
+      ".read": "auth != null", 
+      ".indexOn": ["doctorId", "patientId"],
+      "$appointmentId": {
+        ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin' || 
+                  data.child('patientId').val() === auth.uid || 
+                  data.child('doctorId').val() === auth.uid",
+        
+        ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin' || 
+                   newData.child('patientId').val() === auth.uid || 
+                   (!newData.exists() && data.child('patientId').val() === auth.uid)" 
+      }
+    },
+
+    "doctors": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    },
+
+    "absences": {
+       ".read": "auth != null",
+       ".write": "root.child('users').child(auth.uid).child('role').val() === 'doctor' || root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    },
+    
+    "reviews": {
+      ".read": true,
+      ".write": "auth != null && (newData.child('patientId').val() === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin')"
+    },
+    
+    "system_config": {
+       ".read": true,
+       ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    }
+  }
+}

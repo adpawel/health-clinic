@@ -1,0 +1,15 @@
+{
+  "availability": [
+    {
+      "id": "av_1",
+      "doctorId": "doc_1",
+      "validFrom": "2026-01-01",
+      "validTo": "2026-01-31",
+      "weekdays": [1, 2, 4, 5],
+      "timeRanges": [
+        { "from": "08:00", "to": "12:00" },
+        { "from": "13:00", "to": "17:00" }
+      ]
+    }
+  ]
+}

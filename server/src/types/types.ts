@@ -80,6 +80,7 @@ export interface DBUser extends User {
   password?: string;
   activeRefreshToken?: string | null;
   activeAccessToken?: string | null;
+  activeSessionId?: string;
 }
 
 export interface Review {
@@ -96,4 +97,13 @@ export interface ReviewDto {
   doctorId: string;
   rating: number;
   comment: string;
+}
+
+export interface AppNotification {
+  id: string;
+  userId: string;
+  type: 'ALERT' | 'INFO' | 'SUCCESS';
+  message: string;
+  timestamp: number;
+  read: boolean;
 }

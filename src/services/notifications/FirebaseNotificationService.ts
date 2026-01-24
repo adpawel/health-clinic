@@ -13,7 +13,6 @@ export const FirebaseNotificationService: NotificationServiceAPI = {
 
   disconnect() {
     currentUserId = null;
-    // Listenery odpinamy w funkcji zwracanej przez subscribe
   },
 
   subscribe(callback) {
@@ -35,7 +34,7 @@ export const FirebaseNotificationService: NotificationServiceAPI = {
     };
   },
 
-  async send(notification: AppNotification) {
+  async send(_notification: AppNotification) {
       console.warn("W modelu celowanym użyj logiki backendu do wysyłania powiadomień.");
   }
 };

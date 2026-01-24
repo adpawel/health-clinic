@@ -1,4 +1,5 @@
 import type { Absence, AbsenceDto, Appointment, AppointmentDto, AvailabilityTemplate, AvailabilityTemplateDto, Doctor, DoctorDto, PersistenceMode, Review, ReviewDto, User } from "../interfaces/interfaces";
+import type { AppNotification } from "./notifications/notification.types";
 
 export interface BackendAPI {
   fetchAppointments(): Promise<Appointment[]>;
@@ -30,4 +31,5 @@ export interface BackendAPI {
   updateReview(reviewId: string, review: ReviewDto): Promise<void>;
   deleteReview(reviewId: string): Promise<void>;
   payForAppointment(apptId: string, apptCost: number, userId: string): Promise<void>;
+  fetchNotifications(userId: string): Promise<AppNotification[]>;
 }

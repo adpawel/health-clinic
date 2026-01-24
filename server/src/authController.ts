@@ -5,6 +5,8 @@ import { LowDbDAO } from './dao/LowDbDAO.js';
 import { DBUser } from './types/types.js';
 import { db } from './index.js';
 import { MongoDAO } from './dao/MongoDbDAO.js';
+import { Server } from 'socket.io';
+import { nanoid } from "nanoid";
 
 const ACCESS_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access_secret';
 const REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET || 'refresh_secret';
@@ -15,16 +17,17 @@ const REFRESH_EXPIRE = '7d';
 
 export class AuthController {
   private db: LowDbDAO | MongoDAO;
+  private io: Server;
 
-  constructor(db: LowDbDAO | MongoDAO) {
+  constructor(db: LowDbDAO | MongoDAO, io: Server) {
     this.db = db;
+    this.io = io;
   }
 
   public updateDb(newDb: LowDbDAO | MongoDAO) {
       this.db = newDb;
   }
 
-  // Generowanie pary tokenów
   private generateTokens(user: any) {
     const accessToken = jwt.sign(
       { id: user.id, role: user.role, email: user.email },
@@ -42,21 +45,15 @@ export class AuthController {
   register = async (req: Request, res: Response) => {
     const { email, password, firstName, lastName, pesel, phoneNumber } = req.body;
 
-    // 1. Walidacja: Sprawdź czy user już istnieje
-    // Używamy dedykowanej metody DAO zamiast pobierać całą bazę
     const existingUser = await this.db.findUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: "Użytkownik o tym emailu już istnieje." });
     }
 
-    // 2. LOGIKA LEKARZA (Pre-registration check)
-    // Sprawdzamy, czy ten email znajduje się na liście lekarzy dodanych przez Admina
     const linkedDoctorId = await this.db.findDoctorByEmail(email);
 
-    // Jeśli znaleziono ID lekarza -> rola 'doctor', w przeciwnym razie 'patient'
     const assignedRole = linkedDoctorId ? 'doctor' : 'patient';
 
-    // 3. Haszowanie hasła
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser: DBUser = {
@@ -75,16 +72,11 @@ export class AuthController {
 
     const id = await this.db.saveUser(newUser);
     
-    // 6. Generowanie tokenów (automatyczne logowanie)
-    // Ważne: Przekazujemy id i rolę do payloadu tokena
     const userForToken = { ...newUser, id };
     const tokens = this.generateTokens(userForToken);
     
-    // 7. Single Session: Zapis refresh tokena
     await this.db.updateUserRefreshToken(id, tokens.refreshToken);
 
-    // 8. Odsyłamy odpowiedź (BEZ HASŁA)
-    // Jawnie konstruujemy obiekt zwrotny, żeby nie wysłać hasha przypadkiem
     res.json({ 
         user: { 
             phoneNumber: phoneNumber,
@@ -104,7 +96,6 @@ export class AuthController {
   login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     
-    // 1. Pobieramy usera z bazy (to jest DBUser, ma pole password)
     const user = await this.db.findUserByEmail(email);
 
     if (!user) return res.status(400).json({ message: "Błąd logowania." });
@@ -120,12 +111,17 @@ export class AuthController {
     const tokens = this.generateTokens(user);
     await this.db.updateUserRefreshToken(user.id, tokens.refreshToken);
     await this.db.updateUserSessionToken(user.id, tokens.accessToken);
+    const sessionId = nanoid();
+    await this.db.updateUserSessionId(user.id, sessionId);
+
+    this.io.to(user.id).emit('SESSION_CONFLICT', { newSessionId: sessionId });
 
     const { password: _, activeRefreshToken: __, ...safeUser } = user;
 
     res.json({ 
         user: safeUser, 
-        ...tokens 
+        ...tokens,
+        sessionId 
     });
   };
 

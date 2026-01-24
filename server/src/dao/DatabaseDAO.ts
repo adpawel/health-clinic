@@ -1,4 +1,4 @@
-import { Absence, AbsenceDto, Appointment, AppointmentDto, AvailabilityTemplate, AvailabilityTemplateDto, Doctor, DoctorDto, PersistenceMode, User } from "src/types/types.js";
+import { Absence, AbsenceDto, AppNotification, Appointment, AppointmentDto, AvailabilityTemplate, AvailabilityTemplateDto, Doctor, DoctorDto, PersistenceMode, User } from "src/types/types.js";
 
 export interface DatabaseDAO {
   // --- Appointments ---
@@ -27,4 +27,8 @@ export interface DatabaseDAO {
   getPersistenceMode(): Promise<PersistenceMode>;
   setPersistenceMode(mode: PersistenceMode): Promise<void>;
   updateUserRefreshToken(userId: string, token: string | null): Promise<void>;
+
+  saveNotification(notification: Omit<AppNotification, 'id'>): Promise<void>;
+  getUserNotifications(userId: string): Promise<AppNotification[]>;
+  updateUserSessionId(userId: string, sessionId: string | undefined): Promise<void>;
 }

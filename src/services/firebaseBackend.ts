@@ -1,7 +1,8 @@
-import { ref, get, push, update, set, remove, runTransaction } from "firebase/database";
+import { ref, get, push, update, set, remove, runTransaction, orderByChild, limitToLast, query } from "firebase/database";
 import { db } from "./firebaseConfig";
 import type { BackendAPI } from "./backend.types";
 import type { Appointment, Absence, AvailabilityTemplate, PersistenceMode, AbsenceDto, Review, ReviewDto, Doctor } from "../interfaces/interfaces";
+import type { AppNotification } from "./notifications/notification.types";
 
 export const firebaseBackend: BackendAPI = {
   
@@ -223,6 +224,18 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
 
   async setPersistenceMode(mode: PersistenceMode): Promise<void> {
     await set(ref(db, "system_config/persistenceMode"), mode);
+
+    try {
+        await fetch('http://localhost:3000/config/persistence', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mode })
+        });
+    } catch (e) {
+        console.error("Nie udało się zsynchronizować trybu z serwerem Node.js", e);
+    }
   },
 
   async fetchUsers() {
@@ -309,5 +322,23 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
 
      // Jeśli transakcja przeszła, oznaczamy wizytę
      await set(apptRef, true);
+  },
+
+  async fetchNotifications(userId: string): Promise<AppNotification[]> {
+    const userNotifsRef = ref(db, `users/${userId}/notifications`);
+    
+    const q = query(userNotifsRef, orderByChild('timestamp'), limitToLast(50));
+    const snapshot = await get(q);
+
+    if (!snapshot.exists()) return [];
+
+    const data = snapshot.val();
+    
+    const notifications = Object.entries(data).map(([key, val]: any) => ({
+      id: key,
+      ...val
+    })) as AppNotification[];
+
+    return notifications.sort((a, b) => b.timestamp - a.timestamp);
   },
 };

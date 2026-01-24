@@ -13,6 +13,7 @@ import type {
 } from '../interfaces/interfaces';
 import type { BackendAPI } from './backend.types';
 import { TokenManager } from "./auth/TokenManager";
+import type { AppNotification } from './notifications/notification.types';
 
 let isRefreshing = false;
 let refreshPromise: Promise<string | null> | null = null;
@@ -220,7 +221,7 @@ export class HttpBackendAPI implements BackendAPI {
     return this.request<Review[]>(`/doctors/${doctorId}/reviews`);
   }
 
-  async addReview(review: ReviewDto, patientId: string, patientName: string): Promise<Review> {
+  async addReview(review: ReviewDto, _patientId: string, patientName: string): Promise<Review> {
     return this.request<Review>('/reviews', 'POST', {
       ...review,
       patientName
@@ -240,5 +241,9 @@ export class HttpBackendAPI implements BackendAPI {
 
   async payForAppointment(appointmentId: string, cost: number): Promise<void> {
     await this.request(`/appointments/${appointmentId}/pay`, 'POST', { cost });
+  }
+
+  async fetchNotifications(_userId: string): Promise<AppNotification[]> {
+    return this.request<AppNotification[]>('/notifications');
   }
 }

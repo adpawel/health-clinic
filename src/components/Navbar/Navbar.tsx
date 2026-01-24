@@ -27,6 +27,7 @@ const Navbar = () => {
            {user?.role === 'patient' && (
              <>
                <Link to="/patient/dashboard" className="nav-link">Harmonogramy</Link>
+               <Link className="nav-link" to="/patient/notifications">Powiadomienia</Link>
              </>
            )}
 

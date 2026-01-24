@@ -5,6 +5,7 @@
 
     "users": {
       ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin'",
+
       "$uid": {
         ".read": "$uid === auth.uid", 
         ".write": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin'"
@@ -40,6 +41,11 @@
       ".write": "auth != null && (newData.child('patientId').val() === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin')"
     },
     
+    "availability": {
+       ".read": "auth != null",
+       ".write": "root.child('users').child(auth.uid).child('role').val() === 'doctor' || root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    },
+      
     "system_config": {
        ".read": true,
        ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'"

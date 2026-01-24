@@ -1,6 +1,6 @@
 import { Server } from 'socket.io';
 import { AppointmentService } from './AppointmentService.js';
-import { AbsenceDto } from '../types/types.js';
+import { AbsenceDto, AppNotification } from '../types/types.js';
 import { LowDbDAO } from 'src/dao/LowDbDAO.js';
 import { MongoDAO } from 'src/dao/MongoDbDAO.js';
 
@@ -41,10 +41,17 @@ async createAbsence(data: AbsenceDto) {
     });
 
     for (const appt of conflictingAppointments) {
-        this.io.to(appt.patientId).emit('notification', {
-            type: 'ALERT',
-            message: `Twoja wizyta w dniu ${absenceDateString} została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.`
-        });
+        const newNotification: Omit<AppNotification, 'id'> = {
+          userId: appt.patientId,
+          type: 'ALERT',
+          message: `Twoja wizyta w dniu ${absenceDateString} została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.`,
+          timestamp: Date.now(),
+          read: false
+        };
+
+        await this.db.saveNotification(newNotification);
+
+        this.io.to(appt.patientId).emit('notification', newNotification);
 
         try {
             await this.appointmentService.cancelAppointment(appt.id, 'SYSTEM', 'admin');

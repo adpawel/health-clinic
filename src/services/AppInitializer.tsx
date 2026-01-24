@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { socketClient } from "./sync/socketClient";
 import { setBackendImplementation } from "./backendSelector";
 import { TokenManager } from "./auth/TokenManager";
+import { io } from 'socket.io-client';
 
 export const AppInitializer = ({ children }: { children: React.ReactNode }) => {
   const [ready, setReady] = useState(false);
@@ -31,17 +31,31 @@ export const AppInitializer = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  // useEffect(() => {
+  //   fetchGlobalConfig();
+
+  //   const socket = socketClient.getSocket();
+  //   if(socket) {
+  //       socket.on('SYSTEM_MODE_CHANGED', (data: any) => {
+  //           console.log("Serwer zmienił tryb!", data);
+  //           alert("Administrator zmienił tryb działania systemu. Strona zostanie przeładowana.");
+  //           window.location.reload();
+  //       });
+  //   }
+  // }, []);
+
   useEffect(() => {
     fetchGlobalConfig();
+  }, []);
 
-    const socket = socketClient.getSocket();
-    if(socket) {
-        socket.on('SYSTEM_MODE_CHANGED', (data: any) => {
-            console.log("Serwer zmienił tryb!", data);
-            alert("Administrator zmienił tryb działania systemu. Strona zostanie przeładowana.");
-            window.location.reload();
-        });
-    }
+  useEffect(() => {
+    const socket = io("http://localhost:3000");
+
+    socket.on('SYSTEM_MODE_CHANGED', () => {
+        window.location.reload();
+    });
+
+    return () => { socket.disconnect(); };
   }, []);
 
   if (error) {

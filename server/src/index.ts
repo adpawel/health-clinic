@@ -62,7 +62,7 @@ export let db: MongoDAO | LowDbDAO = initDb(currentConfig.appMode);
 let appointmentService = new AppointmentService(db, io);
 let absenceService = new AbsenceService(db, io, appointmentService);
 let availabilityService = new AvailabilityService(db, io);
-const authController = new AuthController(db);
+const authController = new AuthController(db, io);
 
 io.on('connection', (socket) => {
   const userId = socket.handshake.query.userId as string;
@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('/api/config/global', (req, res) => {
+app.get('/api/config/global', (_req, res) => {
     const config = loadConfig();
     res.json(config);
 });
@@ -225,7 +225,7 @@ app.delete('/doctors/:id', authenticateToken, requireRole(['admin']), async (req
   res.sendStatus(200);
 });
 
-app.get('/users', authenticateToken, requireRole(['admin']), async (req, res) => {
+app.get('/users', authenticateToken, requireRole(['admin', 'patient']), async (_req, res) => {
   const dbUsers = await db.getUsers();
   
   const safeUsers = dbUsers.map(u => {
@@ -264,11 +264,11 @@ app.post('/config/persistence', authenticateToken, requireRole(['admin']), async
   
   await db.setPersistenceMode(newMode);
   
-  if (newMode === 'NONE' || newMode === 'SESSION') {
-      console.log(`Zmiana trybu na ${newMode} - unieważniam wszystkie stare sesje.`);
-      await db.clearAllRefreshTokens();
-  }
+  // Przy każdej zmianie trybu wyczyść wszystkie refresh tokeny, aby wymusić ponowne logowanie
+  console.log(`Zmiana trybu na ${newMode} - unieważniam wszystkie stare sesje.`);
+  await db.clearAllRefreshTokens();
 
+  io.emit('SYSTEM_MODE_CHANGED', { mode: newMode });
   res.sendStatus(200);
 });
 
@@ -339,6 +339,13 @@ app.delete('/reviews/:reviewId', authenticateToken, requireRole(['patient', 'adm
 
   await db.deleteReview(reviewId);
   res.json({ status: 'success' });
+});
+
+app.get('/notifications', authenticateToken, async (req, res) => {
+    // @ts-ignore
+    const userId = req.user.id;
+    const notifications = await db.getUserNotifications(userId);
+    res.json(notifications);
 });
 
 server.listen(PORT, () => {

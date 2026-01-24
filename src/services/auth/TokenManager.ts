@@ -9,6 +9,8 @@ let currentMode: PersistenceMode = 'LOCAL';
 export const TokenManager = {
   setPersistenceMode(mode: PersistenceMode) {
     currentMode = mode;
+    // Wyczyść tokeny przy zmianie trybu, aby wymusić ponowne logowanie
+    this.clearTokens();
   },
 
   getPersistenceMode() {

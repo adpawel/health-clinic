@@ -1,13 +1,12 @@
 import type { User } from "../../interfaces/interfaces";
 import type { AuthAPI } from "./auth.types";
+import { sessionManager } from "./SessionManager";
 import { TokenManager } from "./TokenManager";
 
 const API_URL = "http://localhost:3000/api/auth";
 
-// 1. Tablica do przechowywania funkcji nasłuchujących (to są te funkcje z AuthContext)
 let observers: ((user: User | null) => void)[] = [];
 
-// 2. Funkcja pomocnicza do powiadamiania wszystkich zainteresowanych (Contextu)
 const notifyObservers = (user: User | null) => {
   observers.forEach((callback) => callback(user));
 };
@@ -33,6 +32,10 @@ export const customAuthService: AuthAPI = {
 
     // 3. KLUCZOWY MOMENT: Powiadamiamy AuthContext, że mamy użytkownika!
     notifyObservers(data.user);
+
+    if (data.sessionId) {
+        sessionManager.setSessionId(data.sessionId);
+    }
 
     return data.user;
   },
@@ -63,7 +66,6 @@ export const customAuthService: AuthAPI = {
     
     TokenManager.clearTokens();
     
-    // 3. KLUCZOWY MOMENT: Powiadamiamy, że użytkownik to teraz null
     notifyObservers(null);
     
     // Opcjonalnie: twarde odświeżenie, ale przy działającym Contexcie nie jest konieczne

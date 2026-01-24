@@ -1,4 +1,3 @@
-// src/services/sync/FirebaseDataSync.ts
 import { ref, onValue, off } from "firebase/database";
 import { db } from "../firebaseConfig";
 import type { DataSyncAPI, ResourceType } from "./dataSync.types";
@@ -11,7 +10,7 @@ export const FirebaseDataSync: DataSyncAPI = {
     // Musimy to zignorować, żeby nie robić podwójnego pobierania przy montowaniu komponentu.
     let isInitialLoad = true;
 
-    const callback = (snapshot: any) => {
+    const callback = (_snapshot: any) => {
       if (isInitialLoad) {
         isInitialLoad = false;
         return; 

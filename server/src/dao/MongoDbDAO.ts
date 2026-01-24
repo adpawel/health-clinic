@@ -93,16 +93,20 @@ export class MongoDAO implements DatabaseDAO {
   private async connect() {
     if (mongoose.connection.readyState === 0) {
       try {
-        const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/med-app';
+        const uri = process.env.MONGO_URI;
+
+        if (!uri) {
+          throw new Error("Błąd krytyczny: Brak MONGO_URI w pliku .env!");
+        }
         await mongoose.connect(uri);
-        console.log("✅ Połączono z MongoDB Atlas");
+        console.log("Połączono z MongoDB Atlas");
         
         const config = await ConfigModel.findOne({ key: 'main_config' });
         if (!config) {
             await ConfigModel.create({ key: 'main_config', persistenceMode: 'LOCAL' });
         }
       } catch (error) {
-        console.error("❌ Błąd połączenia z MongoDB:", error);
+        console.error("Błąd połączenia z MongoDB:", error);
       }
     }
   }

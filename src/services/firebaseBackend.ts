@@ -247,7 +247,7 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
     if (!snapshot.exists()) return null;
 
     const data = snapshot.val();
-    const entry = Object.entries(data).find(([key, doc]: any) => doc.email === email);
+    const entry = Object.entries(data).find(([_key, doc]: any) => doc.email === email);
     
     return entry ? entry[0] : null;
   },

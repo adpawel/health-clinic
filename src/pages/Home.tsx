@@ -53,17 +53,17 @@ const Home = () => {
      setModalShow(true);
   };
 
-  const handleDeleteReview = async (doctorId: string) => {
-     if(!window.confirm("Czy na pewno chcesz usunąć opinię?")) return;
+  // const handleDeleteReview = async (doctorId: string) => {
+  //    if(!window.confirm("Czy na pewno chcesz usunąć opinię?")) return;
      
-     const docReviews = await backend.getDoctorReviews(doctorId);
-     const review = docReviews.find(r => r.patientId === user?.id);
+  //    const docReviews = await backend.getDoctorReviews(doctorId);
+  //    const review = docReviews.find(r => r.patientId === user?.id);
      
-     if (review) {
-         await backend.deleteReview(review.id);
-         alert("Usunięto opinię.");
-     }
-  };
+  //    if (review) {
+  //        await backend.deleteReview(review.id);
+  //        alert("Usunięto opinię.");
+  //    }
+  // };
 
   const handleSaveReview = async (data: ReviewDto) => {
      if (!selectedDoctor || !user) return;

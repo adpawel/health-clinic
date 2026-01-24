@@ -15,7 +15,7 @@ export const AdminDashboard = () => {
             const pMode = await backend.getPersistenceMode();
             setCurrentMode(pMode);
 
-            const res = await fetch("http://localhost:3000/api/config/global");
+            const res = await fetch("/api/config/global");
             if (res.ok) {
                 const config = await res.json();
                 setAppModeState(config.appMode);

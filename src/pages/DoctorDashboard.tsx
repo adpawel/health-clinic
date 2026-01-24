@@ -61,7 +61,7 @@ export const DoctorDashboard = ({ doctorId }: DoctorDashboardProps) => {
       return backend.fetchDoctorAppointments(doctorId);
     }, [backend, doctorId]);
 
-    const { data: rawAppointments, refresh } = useRealtimeData<Appointment[]>(
+    const { data: rawAppointments } = useRealtimeData<Appointment[]>(
       fetchDoctorAppointments,
       'appointments',
       []

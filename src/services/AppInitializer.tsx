@@ -9,7 +9,7 @@ export const AppInitializer = ({ children }: { children: React.ReactNode }) => {
 
   const fetchGlobalConfig = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/config/global");
+      const res = await fetch("/api/config/global");
       if (!res.ok) throw new Error("Błąd pobierania konfiguracji");
       
       const config = await res.json();
@@ -17,7 +17,7 @@ export const AppInitializer = ({ children }: { children: React.ReactNode }) => {
       
       setBackendImplementation(config.appMode);
       
-      const persistRes = await fetch("http://localhost:3000/config/persistence");
+      const persistRes = await fetch("/config/persistence");
       if (persistRes.ok) {
           const persistData = await persistRes.json();
           console.log("[AppInit] Tryb sesji:", persistData.mode);    

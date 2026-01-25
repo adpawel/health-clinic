@@ -211,7 +211,7 @@ export const DoctorDashboard = ({ doctorId }: DoctorDashboardProps) => {
       <div className="row">
         <div className="col-md-9">
           <DoctorCalendar
-            appointments={appointments.filter(a => a.isPaid === true)}
+            appointments={appointments}
             absences={absences}
             availabilitySlots={generatedAvailability}
           />

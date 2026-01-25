@@ -55,7 +55,11 @@ export class AppointmentService {
         throw new Error("Ten termin jest już zajęty lub lekarz jest nieobecny.");
     }
 
-    const id = await this.db.saveAppointment(data);
+    const id = await this.db.saveAppointment({
+        ...data,
+        isPaid: false,
+        reservedAt: Date.now()
+    });
     
     this.io.emit('DATA_CHANGED', { resource: 'appointments' });
     

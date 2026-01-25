@@ -41,7 +41,7 @@ const renderPatientSlot = (date: Date, hour: string) => {
       const duration = app.durationMinutes || 30; 
       const appEnd = addMinutes(appStart, duration);
 
-      return slotDateTime >= appStart && slotDateTime < appEnd && app.isPaid === true;
+      return slotDateTime >= appStart && slotDateTime < appEnd;
     });
 
     if (foundAppointment) {

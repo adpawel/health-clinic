@@ -42,7 +42,8 @@ const AppointmentSchema = new Schema({
   isPaid: { type: Boolean, default: false },
   notes: String,
   doctorId: String,
-  cost: Number
+  cost: Number,
+  reservedAt: Number
 });
 
 const AbsenceSchema = new Schema({

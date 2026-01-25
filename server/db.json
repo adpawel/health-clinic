@@ -13,20 +13,6 @@
       "durationMinutes": 60,
       "notes": "",
       "id": "appt_1769361915215_3gt61jt85"
-    },
-    "appt_1769362941635_b42nes4f9": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "patientId": "user_1769362889672",
-      "patientName": "Jan Marek",
-      "patientGender": "M",
-      "patientAge": 87,
-      "type": "pierwsza wizyta",
-      "startTime": "2026-03-13T09:00",
-      "isPaid": true,
-      "cost": 210,
-      "durationMinutes": 90,
-      "notes": "",
-      "id": "appt_1769362941635_b42nes4f9"
     }
   },
   "doctors": {
@@ -86,8 +72,8 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTM2MzMyNiwiZXhwIjoxNzY5OTY4MTI2fQ.RpSvC1XW084ks2aMdTxNyN7SK07bFSthn36JAq0SAmo",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzYzNDY2LCJleHAiOjE3NjkzNjM1MjZ9.9oncdLxgxsIXrot_mRV8yctt5RFbc3u-PeofIQlpGmw"
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTM2NDEwMSwiZXhwIjoxNzY5OTY4OTAxfQ.i8Kx8_dShH0RmDMmoYuzRT6uARu2r-UpU-8jwnTWI1A",
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzY0MzQ5LCJleHAiOjE3NjkzNjQ0MDl9.xqW-xPHoI20U0sKBgFvqiIr_5MbNgusiraa9bLuHpMs"
     },
     "user_1767527070737": {
       "email": "rchojnacki@gmail.com",
@@ -99,9 +85,9 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": null,
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsImlhdCI6MTc2OTM2NzY0OCwiZXhwIjoxNzY5OTcyNDQ4fQ.iSfHI_o74nJimBYmLp-4c_We9Nz1NiF5h-SFKw2JyG4",
       "doctorId": "doc_1767527003678_37wu220so",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6InJjaG9qbmFja2lAZ21haWwuY29tIiwiaWF0IjoxNzY5MjYxMDgwLCJleHAiOjE3NjkyNjExNDB9.T5A3i00mfxouKoEqge9i_vjbXPRKq8U7vhixehhjfdw"
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6InJjaG9qbmFja2lAZ21haWwuY29tIiwiaWF0IjoxNzY5MzY3NzE2LCJleHAiOjE3NjkzNjc3NzZ9.Hi78PaSM2kfe6cM-XFfTkQcHNexSTvvx_FO_2ju8sCg"
     },
     "user_1767529854942": {
       "email": "jwidawska@gmail.com",
@@ -262,9 +248,9 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsImlhdCI6MTc2OTM2MjYyMCwiZXhwIjoxNzY5OTY3NDIwfQ._7PhTn5mLucYHgBWoOfGAwREHnNgwVQy588nj4ufr6A",
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsImlhdCI6MTc2OTM2NzY1OSwiZXhwIjoxNzY5OTcyNDU5fQ.NOrvEWqmKqRgmRNGwGmsOJIKwzwNzWzwLX-4OYjr7mw",
       "walletBalance": 860,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJra2xpbWVrQGdtYWlsLmNvbSIsImlhdCI6MTc2OTM2MjYyMCwiZXhwIjoxNzY5MzYyNjgwfQ.c4NHuHn-gChPhpMzwkwXjHQzdnXFtWlhdVXg-zQtdpI"
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJra2xpbWVrQGdtYWlsLmNvbSIsImlhdCI6MTc2OTM2NzcxNCwiZXhwIjoxNzY5MzY3Nzc0fQ.O2DTmRaI45VFVsm9rtVRoTvicvVyKAIqZ8G1wCsF9qo"
     },
     "user_1769362889672": {
       "email": "jmarek@gmail.com",
@@ -277,7 +263,7 @@
       "phoneNumber": "",
       "isBanned": false,
       "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTM2Mjg4OTY3MiIsImlhdCI6MTc2OTM2MjkxMiwiZXhwIjoxNzY5OTY3NzEyfQ.9bYocxkt6aMT5PZbQAAjJhloIEN7MA7JmSZMNbiPAus",
-      "walletBalance": 790,
+      "walletBalance": 1000,
       "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTM2Mjg4OTY3MiIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJqbWFyZWtAZ21haWwuY29tIiwiaWF0IjoxNzY5MzYyOTEyLCJleHAiOjE3NjkzNjI5NzJ9.MjdODb0kIPmghtBWyi6BvYgVV0wxBPFGX_X5cFOMTvQ"
     }
   },
@@ -515,6 +501,15 @@
       "reason": "",
       "type": "ABSENCE",
       "id": "abs_1769261079258_ba53i08rh"
+    },
+    "abs_1769367714553_hz730d85p": {
+      "doctorId": "doc_1767527003678_37wu220so",
+      "date": "2026-03-13T00:00:00.000Z",
+      "startTime": "00:00",
+      "endTime": "23:59",
+      "reason": "",
+      "type": "ABSENCE",
+      "id": "abs_1769367714553_hz730d85p"
     }
   },
   "availabilities": {
@@ -699,8 +694,25 @@
     }
   },
   "system_config": {
-    "persistenceMode": "SESSION"
+    "persistenceMode": "LOCAL"
   },
   "reviews": [],
-  "notifications": []
+  "notifications": [
+    {
+      "id": "notif_1769367714560_ik79gptw1",
+      "userId": "user_1769362889672",
+      "type": "ALERT",
+      "message": "Twoja wizyta w dniu 2026-03-13 została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.",
+      "timestamp": 1769367714559,
+      "read": false
+    },
+    {
+      "id": "notif_1769367714575_tscsxhivo",
+      "userId": "user_1769260315119",
+      "type": "ALERT",
+      "message": "Twoja wizyta w dniu 2026-03-13 została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.",
+      "timestamp": 1769367714574,
+      "read": false
+    }
+  ]
 }

@@ -15,6 +15,7 @@ import { requireRole } from './middleware/roleMiddleware.js';
 import { AppointmentService } from './services/AppointmentService.js';
 import { AbsenceService } from './services/AbsenceService.js';
 import { AvailabilityService } from './services/AvailabilityService.js';
+import cron from 'node-cron';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -339,6 +340,33 @@ app.get('/notifications', authenticateToken, async (req, res) => {
     const userId = req.user.id;
     const notifications = await db.getUserNotifications(userId);
     res.json(notifications);
+});
+
+cron.schedule('* * * * *', async () => {
+    const LIMIT_MS = 5 * 60 * 1000;
+    const now = Date.now();
+
+    try {
+        const allAppointments = await db.getAppointments();
+
+        const expired = allAppointments.filter((appt: any) => {
+            return !appt.isPaid && 
+                   appt.reservedAt && 
+                   (now - appt.reservedAt > LIMIT_MS);
+        });
+
+        if (expired.length > 0) {
+            console.log(`[Cron] Usuwam ${expired.length} przedawnionych rezerwacji.`);
+            
+            for (const appt of expired) {
+                await db.deleteAppointment(appt.id);
+            }
+
+            io.emit('DATA_CHANGED', { resource: 'appointments' });
+        }
+    } catch (error) {
+        console.error("[Cron] Błąd podczas czyszczenia rezerwacji:", error);
+    }
 });
 
 server.listen(PORT, () => {

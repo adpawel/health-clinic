@@ -154,6 +154,13 @@ export class LowDbDAO implements DatabaseDAO {
     }
   }
 
+  async findDoctorById(id: string): Promise<Doctor | null> {
+    await this.init();
+    const doctor = Object.values(this.db.data.doctors).find((d) => d.id === id);
+    
+    return doctor || null;
+  }
+
   async findDoctorByEmail(email: string): Promise<string | null> {
     await this.init();
     const doctors = Object.values(this.db.data.doctors);

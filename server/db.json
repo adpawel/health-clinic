@@ -21,6 +21,16 @@
       ],
       "email": "ikowalska@gmail.com",
       "id": "doc_1767539694858_zp8pug6yo"
+    },
+    "doc_1769352710970_vku41xcpt": {
+      "firstName": "Maria",
+      "lastName": "Stępień",
+      "title": "lek.",
+      "specializations": [
+        "Kardiolog"
+      ],
+      "email": "mstepien@gmail.com",
+      "id": "doc_1769352710970_vku41xcpt"
     }
   },
   "users": {
@@ -47,8 +57,8 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTMzODUxOCwiZXhwIjoxNzY5OTQzMzE4fQ.ipWdmm3Lc9BbhgaE6E1yRrr4lfqt8VYBalbd3BCDnQQ",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzM4NTE4LCJleHAiOjE3NjkzMzg1Nzh9.dK0EQqUe1T5r4hTZR_75ope268nFKdlIasIWccw9ej8"
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTM1MjY4MiwiZXhwIjoxNzY5OTU3NDgyfQ.vNE6Ah7qzPeeo4gf7oKUsEEE_Jpp-4K9CWLlSdEB7t0",
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzUyNjgyLCJleHAiOjE3NjkzNTI3NDJ9.6sFxiZGXmaqmjJ996wF7NlYQ-Nx5-cjDY4I-Efd9hWk"
     },
     "user_1767527070737": {
       "email": "rchojnacki@gmail.com",

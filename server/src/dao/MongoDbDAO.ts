@@ -183,6 +183,15 @@ export class MongoDAO implements DatabaseDAO {
     return doc ? doc._id.toString() : null;
   }
 
+  async findDoctorById(id: string): Promise<Doctor | null> {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return null;
+    }
+
+    const doc = await DoctorModel.findById(id);
+    return doc ? this.mapDoc<Doctor>(doc) : null;
+  }
+
   async getUsers(): Promise<DBUser[]> {
     const docs = await UserModel.find();
     return docs.map(this.mapDoc<DBUser>);

@@ -14,7 +14,7 @@ import { nanoid } from "nanoid";
 import { app, db } from "../firebaseConfig";
 import type { AuthAPI } from "./auth.types";
 import { getBackend } from "../backendSelector";
-import type { PersistenceMode, User } from "../../interfaces/interfaces";
+import type { PersistenceMode, User, UserRole } from "../../interfaces/interfaces";
 import { sessionManager } from "./SessionManager";
 const auth = getAuth(app);
 
@@ -99,12 +99,31 @@ export const firebaseAuth: AuthAPI = {
 
   async register(email, password, userData) {
     const backend = getBackend();
+
+    const linkedDoctorId = await backend.findDoctorByEmail(email);
+    let assignedRole: UserRole = 'patient';
+
+    if (linkedDoctorId) {
+       assignedRole = 'doctor';
+       
+       const existingDoctorProfile = await backend.findDoctorById(linkedDoctorId);
+
+       if (existingDoctorProfile) {
+          const inputName = userData.firstName.trim().toLowerCase();
+          const inputLast = userData.lastName.trim().toLowerCase();
+          const doctorName = existingDoctorProfile.firstName.trim().toLowerCase();
+          const doctorLast = existingDoctorProfile.lastName.trim().toLowerCase();
+
+          if (inputName !== doctorName || inputLast !== doctorLast) {
+             throw new Error(
+                `Dane niezgodne! Ten email jest przypisany do lekarza: ${existingDoctorProfile.firstName} ${existingDoctorProfile.lastName}. Proszę wprowadzić poprawne dane lub skontaktować się z administratorem.`
+             );
+          }
+       }
+    }
     
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const uid = userCredential.user.uid;
-
-    const linkedDoctorId = await backend.findDoctorByEmail(email);
-    const assignedRole = linkedDoctorId ? 'doctor' : 'patient';
 
     const newUser: User = {
       id: uid,

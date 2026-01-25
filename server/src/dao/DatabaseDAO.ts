@@ -19,6 +19,7 @@ export interface DatabaseDAO {
   deleteDoctor(id: string): Promise<void>;
   
   findDoctorByEmail(email: string): Promise<string | null>;
+  findDoctorById(id: string): Promise<Doctor | null>;
 
   getUsers(): Promise<User[]>;
   saveUser(user: any): Promise<string>;
@@ -29,4 +30,5 @@ export interface DatabaseDAO {
   updateUserRefreshToken(userId: string, token: string | null): Promise<void>;
   saveNotification(notification: Omit<AppNotification, 'id'>): Promise<void>;
   getUserNotifications(userId: string): Promise<AppNotification[]>;
+
 }

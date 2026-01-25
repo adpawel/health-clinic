@@ -61,7 +61,6 @@ const Home = () => {
      } else {
         await backend.addReview({ ...data, doctorId: selectedDoctor.id }, user.id, user.firstName);
      }
-     // Opcjonalnie tutaj można dodać odświeżenie listy lub alert sukcesu
   };
 
   if (loading) {

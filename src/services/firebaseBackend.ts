@@ -158,14 +158,11 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
         });
 
         
-        // Mapa: PatientID -> Najwcześniejsza godzina wizyty (string)
         const patientsToNotify = new Map<string, string>();
 
         affectedAppointments.forEach(appt => {
             const currentEarliest = patientsToNotify.get(appt.patientId);
             
-            // Jeśli nie ma jeszcze pacjenta na liście LUB ten slot jest wcześniejszy niż zapisany
-            // (np. mamy slot 09:30, a teraz trafiliśmy na 09:00 -> bierzemy 09:00 jako start wizyty)
             if (!currentEarliest || appt.startTime < currentEarliest) {
                 patientsToNotify.set(appt.patientId, appt.startTime);
             }

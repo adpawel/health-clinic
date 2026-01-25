@@ -68,7 +68,7 @@ const AvailabilityModal = ({ show, onClose, onSave }: AvailabilityModalProps) =>
                       <button 
                         key={day.value}
                         type="button"
-                        className={`btn btn-outline-primary ${selectedDays.includes(day.value) ? 'active' : ''}`}
+                        className={`btn ${selectedDays.includes(day.value) ? 'btn-brand' : 'btn-brand-outline'}`}
                         onClick={() => toggleDay(day.value)}
                       >
                         {day.label}
@@ -147,9 +147,9 @@ const AvailabilityModal = ({ show, onClose, onSave }: AvailabilityModalProps) =>
             )}
           </div>
           <div className="modal-footer">
-            <button className="btn btn-secondary" onClick={onClose}>Anuluj</button>
+            <button className="btn btn-danger" onClick={onClose}>Anuluj</button>
             <button
-              className="btn btn-primary"
+              className="btn btn-brand"
               onClick={() => {
                 if (activeTab === 'cyclic') {
                   onSave({

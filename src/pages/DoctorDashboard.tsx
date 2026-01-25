@@ -222,14 +222,14 @@ export const DoctorDashboard = ({ doctorId }: DoctorDashboardProps) => {
             <h6>Opcje Lekarza</h6>
 
             <button
-              className="btn btn-sm btn-outline-primary mb-2"
+              className="btn btn-sm btn-secondary mb-2"
               onClick={() => setShowModal(true)}
             >
               Definiuj Dostępność
             </button>
 
             <button
-              className="btn btn-sm btn-outline-danger"
+              className="btn btn-sm btn-danger"
               onClick={() => setShowAbsenceModal(true)}
             >
               Dodaj Absencję

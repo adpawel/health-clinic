@@ -168,7 +168,7 @@ export const PatientDashboard = ({ userId }: PatientDashboardProps) => {
               {doctors.map(doc => (
                 <li
                   key={doc.id}
-                  className={`list-group-item px-2 ${selectedDoctor?.id === doc.id ? "active" : ""}`}
+                  className={`list-group-item px-2 ${selectedDoctor?.id === doc.id ? "bg-bright" : ""}`}
                   style={{ cursor: "pointer" }}
                   onClick={() => setSelectedDoctor(doc)}
                 >
@@ -191,7 +191,7 @@ export const PatientDashboard = ({ userId }: PatientDashboardProps) => {
               onCancelAppointment={handleCancelReservation}
             />
           ) : (
-            <div className="alert alert-info mt-5 text-center">
+            <div className="alert alert-info mt-5 text-center bg-bright text-dark">
               Wybierz lekarza z listy po lewej stronie.
             </div>
           )}
@@ -206,14 +206,14 @@ export const PatientDashboard = ({ userId }: PatientDashboardProps) => {
             
             { paidAppointments && paidAppointments.length > 0 && (
               <div className="card mt-3">
-                <div className="card-header bg-success text-white">
+                <div className="card-header bg-bright text-dark">
                   Twoje opłacone wizyty
                 </div>
                 <ul className="list-group list-group-flush">
                   {paidAppointments.map(app => (
                     <li key={app.id} className="list-group-item d-flex justify-content-between">
                       <span>{app.startTime.replace("T", " ")}</span>
-                      <span className="badge bg-success">Opłacone</span>
+                      <span className="badge bg-blue">Opłacone</span>
                     </li>
                   ))}
                 </ul>

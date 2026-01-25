@@ -55,8 +55,8 @@ const CalendarGrid = ({ title, renderSlot, getAppointmentCount }: CalendarGridPr
         <div className="d-flex align-items-center gap-3">
           <span className="fw-bold">{format(weekDays[0], 'dd.MM')} - {format(weekDays[6], 'dd.MM')}</span>
           <div className="btn-group">
-            <button className="btn btn-outline-primary btn-sm" onClick={handlePrevWeek}>&larr;</button>
-            <button className="btn btn-outline-primary btn-sm" onClick={handleNextWeek}>&rarr;</button>
+            <button className="btn btn-secondary btn-sm" onClick={handlePrevWeek}>&larr;</button>
+            <button className="btn btn-secondary btn-sm" onClick={handleNextWeek}>&rarr;</button>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ const CalendarGrid = ({ title, renderSlot, getAppointmentCount }: CalendarGridPr
                   <small className="text-muted">{format(date, 'dd.MM.yyyy')}</small>
                   {getAppointmentCount && (
                     <div className="mt-1">
-                      <span className="badge rounded-pill bg-info text-dark">
+                      <span className="badge rounded-pill bg-blue text-light">
                         Wizyt: {getAppointmentCount(date)}
                       </span>
                     </div>

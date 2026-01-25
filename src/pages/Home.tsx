@@ -5,6 +5,7 @@ import type { Appointment, Doctor, Review, ReviewDto } from "../interfaces/inter
 import { getBackend } from "../services/backendSelector";
 import { useAuth } from "../hooks/AuthContext";
 import { ReviewModal } from "../components/ReviewModal";
+import logo from "../assets/logo-bg.png";
 
 const Home = () => {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -70,6 +71,13 @@ const Home = () => {
   return (
     <div className="container mt-4">
       <div className="text-center mb-5">
+        <img 
+            src={logo} 
+            alt="Logo HealthClinic" 
+            style={{ height: '100px', width: 'auto' }} /* Możesz dostosować rozmiar */
+            className="mb-3" /* Margines od dołu, żeby nie dotykało napisu */
+        />
+
         <h1 className="display-4">Witamy w HealthClinic</h1>
         <p className="lead text-muted">Znajdź specjalistę i umów wizytę bez wychodzenia z domu.</p>
       </div>
@@ -90,7 +98,6 @@ const Home = () => {
                     <h5 className="card-title mb-0">
                       {doctor.title} {doctor.firstName} {doctor.lastName}
                     </h5>
-                    {/* --- ZMIANA 1: LINK DO LISTY OPINII --- */}
                     <Link to={`/${doctor.id}/reviews`} style={{ fontSize: '0.85rem', textDecoration: 'none' }}>
                         Zobacz opinie
                     </Link>
@@ -101,7 +108,7 @@ const Home = () => {
                 <div>
                   {doctor.specializations && doctor.specializations.length > 0 ? (
                     doctor.specializations.map((spec, index) => (
-                      <span key={index} className="badge bg-info text-dark me-1">
+                      <span key={index} className="badge bg-blue text-light me-1">
                         {spec}
                       </span>
                     ))
@@ -111,20 +118,18 @@ const Home = () => {
                 </div>
               </div>
               
-              {/* --- ZMIANA 2: STYLOWANIE FOOTERA (flex column) --- */}
               <div className="card-footer bg-white border-top-0 d-flex flex-column gap-2">
                  
                  {user?.role === 'patient' && (
-                    <Link to="/patient/dashboard" className="btn btn-outline-primary w-100">
+                    <Link to="/patient/dashboard" className="btn btn-brand w-100">
                       Sprawdź terminy
                     </Link>
                  )}
 
-                 {/* --- ZMIANA 3: WARUNKOWY PRZYCISK OCENY --- */}
                  {user?.role === 'patient' && hasVisited(doctor.id) && (
                     <Button 
                         variant="warning" 
-                        className="w-100 text-dark"
+                        className="w-100 btn-brand"
                         onClick={() => handleOpenReview(doctor)}
                     >
                         ⭐ Oceń / Edytuj opinię
@@ -132,7 +137,7 @@ const Home = () => {
                  )}
 
                 {!user && (
-                    <Link to="/login" className="btn btn-outline-secondary w-100">
+                    <Link to="/login" className="btn btn-brand w-100">
                       Zaloguj się, aby umówić
                     </Link>
                  )}

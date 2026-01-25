@@ -54,7 +54,7 @@ export const Register = () => {
             <label>Hasło</label>
             <input name="password" type="password" className="form-control" onChange={handleChange} required />
           </div>
-          <button className="btn btn-success w-100" type="submit">Zarejestruj się</button>
+          <button className="btn btn-brand w-100" type="submit">Zarejestruj się</button>
         </form>
       </div>
     </div>

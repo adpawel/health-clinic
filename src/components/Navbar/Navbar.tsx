@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-4 shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark px-4 shadow-sm bg-brand">
       <Link className="navbar-brand fw-bold" to="/">HealthClinic</Link>
       
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -31,7 +31,6 @@ const Navbar = () => {
              </>
            )}
 
-           {/* --- MENU LEKARZA --- */}
            {user?.role === 'doctor' && (
               <Link to="/doctor/dashboard" className="nav-link">Mój Harmonogram</Link>
            )}
@@ -56,18 +55,18 @@ const Navbar = () => {
           {user ? (
             <>
               <span className="text-white small">
-                {user.role === 'admin' && <span className="badge bg-warning text-dark me-2">ADMIN</span>}
-                {user.role === 'doctor' && <span className="badge bg-info text-dark me-2">LEKARZ</span>}
+                {user.role === 'admin' && <span className="badge bg-blue text-dark me-2">ADMIN</span>}
+                {user.role === 'doctor' && <span className="badge bg-blue text-white me-2">LEKARZ</span>}
                 {user.firstName} {user.lastName}
               </span>
-              <button onClick={handleLogout} className="btn btn-outline-light btn-sm">
+              <button onClick={handleLogout} className="btn btn-brand btn-sm">
                 Wyloguj
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="btn btn-light btn-sm text-primary fw-bold">Logowanie</Link>
-              <Link to="/register" className="btn btn-outline-light btn-sm">Rejestracja</Link>
+              <Link to="/login" className="btn btn-sm btn-brand">Logowanie</Link>
+              <Link to="/register" className="btn btn-brand btn-sm">Rejestracja</Link>
             </>
           )}
         </div>

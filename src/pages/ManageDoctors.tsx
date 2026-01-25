@@ -98,7 +98,7 @@ export const ManageDoctors = () => {
 
       {/* --- FORMULARZ DODAWANIA --- */}
       <div className="card shadow-sm mb-5">
-        <div className="card-header bg-primary text-white">
+        <div className="card-header bg-brand text-white">
             <i className="bi bi-person-plus-fill me-2"></i>
             Dodaj Nowego Lekarza
         </div>
@@ -170,7 +170,7 @@ export const ManageDoctors = () => {
                     <div className="form-text">Wpisz specjalizacje po przecinku.</div>
                 </div>
 
-                <button type="submit" className="btn btn-success">
+                <button type="submit" className="btn btn-brand">
                     <i className="bi bi-plus-circle me-1"></i> Dodaj Lekarza
                 </button>
             </form>

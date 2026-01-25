@@ -46,7 +46,7 @@ export const Login = () => {
             <label>Hasło</label>
             <input className="form-control" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
           </div>
-          <button className="btn btn-primary w-100" type="submit">Zaloguj się</button>
+          <button className="btn btn-brand w-100" type="submit">Zaloguj się</button>
         </form>
       </div>
     </div>

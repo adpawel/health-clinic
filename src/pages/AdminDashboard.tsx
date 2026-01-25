@@ -67,7 +67,7 @@ export const AdminDashboard = () => {
       <h2 className="mb-4">Panel Administratora</h2>
       
       <div className="card shadow mb-4">
-        <div className="card-header bg-dark text-white">
+        <div className="card-header text-dark bg-bright">
           <i className="bi bi-gear-fill me-2"></i>
           Konfiguracja Systemu
         </div>
@@ -124,13 +124,13 @@ export const AdminDashboard = () => {
 
           {message && <div className="alert alert-info">{message}</div>}
 
-          <button className="btn btn-primary" onClick={handleSave}>
+          <button className="btn btn-secondary" onClick={handleSave}>
             Zapisz Ustawienia
           </button>
         </div>
       </div>
       <div className="card shadow mb-4">
-        <div className="card-header bg-warning text-dark">
+        <div className="card-header bg-bright text-dark">
           <i className="bi bi-hdd-network-fill me-2"></i>
           Tryb Aplikacji (Backend & Auth)
         </div>
@@ -142,28 +142,28 @@ export const AdminDashboard = () => {
           <div className="btn-group w-100" role="group">
             <button 
                 type="button" 
-                className={`btn ${appMode === 'FIREBASE' ? 'btn-danger' : 'btn-outline-danger'}`}
+                className={`btn ${appMode === 'FIREBASE' ? 'btn-brand' : 'btn-brand-outline'}`}
                 onClick={() => handleAppModeChange('FIREBASE')}
             >
                 Firebase (Auth + DB)
             </button>
             <button 
                 type="button" 
-                className={`btn ${appMode === 'CUSTOM_LOCAL' ? 'btn-success' : 'btn-outline-success'}`}
+                className={`btn ${appMode === 'CUSTOM_LOCAL' ? 'btn-brand' : 'btn-brand-outline'}`}
                 onClick={() => handleAppModeChange('CUSTOM_LOCAL')}
             >
                 Custom Auth + Plik JSON (LowDB)
             </button>
             <button 
                 type="button" 
-                className={`btn ${appMode === 'CUSTOM_MONGO' ? 'btn-success' : 'btn-outline-success'}`}
+                className={`btn ${appMode === 'CUSTOM_MONGO' ? 'btn-brand' : 'btn-brand-outline'}`}
                 onClick={() => handleAppModeChange('CUSTOM_MONGO')}
             >
                 Custom Auth + MongoDB Atlas
             </button>
           </div>
           
-          <div className="mt-3 alert alert-secondary small">
+          <div className="mt-3 alert alert-secondary small bg-bright text-dark">
             Aktualnie wybrany tryb: <strong>{appMode}</strong>
           </div>
         </div>

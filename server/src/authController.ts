@@ -168,11 +168,6 @@ export class AuthController {
       );
 
       await this.db.updateUserSessionToken(user.id, accessToken);
-      
-      this.io.to(user.id).emit('SESSION_CHANGED', { 
-          validAccessToken: accessToken,
-          reason: 'TOKEN_REFRESH'
-      });
 
       const { password: _, activeRefreshToken: __, ...safeUser } = user;
 

@@ -43,9 +43,9 @@ const Cart = ({ appointments, onPay, onCancel }: CartProps) => {
 
   return (
     <div className="card mb-4 shadow-sm">
-      <div className="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <div className="card-header bg-brand text-white d-flex justify-content-between align-items-center">
         <h5 className="mb-0">Koszyk Usług</h5>
-        <span className="badge bg-light text-primary">{appointments?.length} wizyt</span>
+        <span className="badge bg-light text-dark">{appointments?.length} wizyt</span>
       </div>
       
       <div className="card-body p-0">
@@ -70,7 +70,7 @@ const Cart = ({ appointments, onPay, onCancel }: CartProps) => {
                 
                 <div className="mt-2 d-flex justify-content-end">
                    <button 
-                     className="btn btn-outline-danger btn-sm py-0"
+                     className="btn btn-danger btn-sm py-0"
                      onClick={() => onCancel(app.id)}
                      disabled={isProcessing}
                      title="Usuń z koszyka"
@@ -91,7 +91,7 @@ const Cart = ({ appointments, onPay, onCancel }: CartProps) => {
             <span className="h4 mb-0 text-primary">{totalCost} PLN</span>
           </div>
           <button 
-            className="btn btn-success w-100 btn-lg" 
+            className="btn btn-brand w-100 btn-lg" 
             onClick={handlePayment} 
             disabled={isProcessing}
           >

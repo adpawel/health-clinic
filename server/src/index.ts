@@ -62,7 +62,7 @@ export let db: MongoDAO | LowDbDAO = initDb(currentConfig.appMode);
 let appointmentService = new AppointmentService(db, io);
 let absenceService = new AbsenceService(db, io, appointmentService);
 let availabilityService = new AvailabilityService(db, io);
-const authController = new AuthController(db);
+const authController = new AuthController(db, io);
 
 io.on('connection', (socket) => {
   const userId = socket.handshake.query.userId as string;

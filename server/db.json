@@ -57,8 +57,8 @@
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTM1MjY4MiwiZXhwIjoxNzY5OTU3NDgyfQ.vNE6Ah7qzPeeo4gf7oKUsEEE_Jpp-4K9CWLlSdEB7t0",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzUyNjgyLCJleHAiOjE3NjkzNTI3NDJ9.6sFxiZGXmaqmjJ996wF7NlYQ-Nx5-cjDY4I-Efd9hWk"
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTM1Njk1NiwiZXhwIjoxNzY5OTYxNzU2fQ.KwIBTULKI-R3DgC4bX3PDdZe0-knhGmJvPnbruPgG-4",
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzU2OTU2LCJleHAiOjE3NjkzNTcwMTZ9.mkzXMryN0Jk7Fe9bGFAcbYmidJUbNF6QWucIUWrzVmU"
     },
     "user_1767527070737": {
       "email": "rchojnacki@gmail.com",

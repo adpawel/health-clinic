@@ -5,6 +5,7 @@ import { LowDbDAO } from './dao/LowDbDAO.js';
 import { DBUser, UserRole } from './types/types.js';
 import { db } from './index.js';
 import { MongoDAO } from './dao/MongoDbDAO.js';
+import { Server } from 'socket.io';
 
 const ACCESS_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access_secret';
 const REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET || 'refresh_secret';
@@ -14,9 +15,11 @@ const REFRESH_EXPIRE = '7d';
 
 export class AuthController {
   private db: LowDbDAO | MongoDAO;
+  private io: Server;
 
-  constructor(db: LowDbDAO | MongoDAO) {
+  constructor(db: LowDbDAO | MongoDAO, io: Server) {
     this.db = db;
+    this.io = io;
   }
 
   public updateDb(newDb: LowDbDAO | MongoDAO) {
@@ -126,6 +129,11 @@ export class AuthController {
     await this.db.updateUserRefreshToken(user.id, tokens.refreshToken);
     await this.db.updateUserSessionToken(user.id, tokens.accessToken);
 
+    this.io.to(user.id).emit('SESSION_CHANGED', { 
+        validAccessToken: tokens.accessToken,
+        reason: 'NEW_LOGIN'
+    });
+
     const { password: _, activeRefreshToken: __, ...safeUser } = user;
 
     res.json({ 
@@ -139,8 +147,7 @@ export class AuthController {
     if (!token) return res.sendStatus(401);
 
     jwt.verify(token, REFRESH_SECRET, async (err: any, decoded: any) => {
-      if (err) return res.sendStatus(403); // Token nieważny/wygasł
-
+      if (err) return res.sendStatus(403);
       // 2. Weryfikacja w bazie (Single Session)
       // Musimy sprawdzić, czy ten token jest tym "aktywnym" w bazie
       const users = await this.db.getUsers();
@@ -161,6 +168,12 @@ export class AuthController {
       );
 
       await this.db.updateUserSessionToken(user.id, accessToken);
+      
+      this.io.to(user.id).emit('SESSION_CHANGED', { 
+          validAccessToken: accessToken,
+          reason: 'TOKEN_REFRESH'
+      });
+
       const { password: _, activeRefreshToken: __, ...safeUser } = user;
 
       res.json({ 
@@ -174,9 +187,13 @@ export class AuthController {
   logout = async (req: Request, res: Response) => {
     const { userId } = req.body;
     if (userId) {
-        // Usuń token z bazy
         await this.db.updateUserRefreshToken(userId, null);
         await this.db.updateUserSessionToken(userId, null);
+
+        this.io.to(userId).emit('SESSION_CHANGED', { 
+            validAccessToken: null,
+            reason: 'LOGOUT'
+        });
     }
     res.sendStatus(204);
   };

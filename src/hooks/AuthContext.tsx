@@ -8,6 +8,8 @@ import { dataSyncService } from '../services/sync/syncSelector';
 import { sessionManager } from '../services/auth/SessionManager';
 import { onValue, ref } from 'firebase/database';
 import { db } from '../services/firebaseConfig';
+import { socketClient } from '../services/sync/socketClient';
+import { TokenManager } from '../services/auth/TokenManager';
 
 interface AuthContextType {
   user: User | null;
@@ -60,7 +62,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [user?.id, refreshUser]);
 
   useEffect(() => {
-    if (!user || isFirebaseAuth()) return;
+    if (!user || !isFirebaseAuth()) return;
 
     const sessionRef = ref(db, `users/${user.id}/activeSessionId`);
 
@@ -82,6 +84,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return () => unsubscribe();
   }, [user, authService]);
+
+  useEffect(() => {
+    if (!user || isFirebaseAuth()) return;
+
+    socketClient.connect(user.id);
+
+    const handleSessionChange = (data: { validAccessToken: string | null, reason: string }) => {
+        const localToken = TokenManager.getAccessToken();
+
+        if (localToken !== data.validAccessToken) {
+            console.warn(`[Auth] Sesja unieważniona. Powód: ${data.reason}`);
+            
+            TokenManager.clearTokens(); 
+            setUser(null);
+            
+            alert("Zalogowano się na innym urządzeniu. Twoja sesja została zakończona.");
+            window.location.href = "/login";
+        }
+    };
+
+    socketClient.on('SESSION_CHANGED', handleSessionChange);
+
+    return () => {
+        socketClient.off('SESSION_CHANGED', handleSessionChange);
+    };
+  }, [user]);
   
   if (loading) {
       return (

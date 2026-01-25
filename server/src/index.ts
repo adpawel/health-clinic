@@ -325,17 +325,10 @@ app.put('/reviews/:reviewId', authenticateToken, requireRole(['patient']), async
   res.json({ status: 'success' });
 });
 
-app.delete('/reviews/:reviewId', authenticateToken, requireRole(['patient', 'admin']), async (req, res) => {
+app.delete('/reviews/:reviewId', authenticateToken, requireRole(['admin']), async (req, res) => {
   const { reviewId } = req.params;
-  // @ts-ignore
-  const userId = req.user.id;
-
   const review = await db.findReviewById(reviewId);
   if (!review) return res.status(404).json({ message: "Opinia nie istnieje" });
-
-  if (review.patientId !== userId) {
-    return res.status(403).json({ message: "Nie możesz usunąć cudzej opinii" });
-  }
 
   await db.deleteReview(reviewId);
   res.json({ status: 'success' });

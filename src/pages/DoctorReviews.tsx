@@ -3,11 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getBackend } from '../services/backendSelector';
 import { Card, Button, Container, Spinner } from 'react-bootstrap';
 import type { Doctor, Review } from '../interfaces/interfaces';
+import { useAuth } from '../hooks/AuthContext';
 
 export const DoctorPage = () => {
   const { doctorId } = useParams();
   const navigate = useNavigate();
   const backend = getBackend();
+  const { user } = useAuth();
   
   const [reviews, setReviews] = useState<Review[]>([]);
   const [doctor, setDoctor] = useState<Doctor | null>(null);
@@ -32,6 +34,18 @@ export const DoctorPage = () => {
     fetchData();
   }, [doctorId]);
 
+  const handleAdminDelete = async (reviewId: string) => {
+      if (!window.confirm("Czy na pewno chcesz trwale usunąć tę opinię?")) {
+          return;
+      }
+      try {
+          await backend.deleteReview(reviewId);
+          setReviews(prevReviews => prevReviews.filter(r => r.id !== reviewId));
+      } catch (error) {
+          alert("Wystąpił błąd podczas usuwania opinii.");
+      }
+  };
+
   if (loading) return <div className="text-center mt-5"><Spinner animation="border" /></div>;
   if (!doctor) return <div className="text-center mt-5">Nie znaleziono lekarza.</div>;
 
@@ -46,7 +60,7 @@ export const DoctorPage = () => {
       </Button>
       
       <Card className="mb-4 text-center p-4 bg-light">
-        <h2>Dr {doctor.firstName} {doctor.lastName}</h2>
+        <h2>{doctor.title ?? "Dr."} {doctor.firstName} {doctor.lastName}</h2>
         <h4 className="text-warning">★ {averageRating}</h4>
         <p className="text-muted">Liczba opinii: {reviews.length}</p>
       </Card>
@@ -58,16 +72,33 @@ export const DoctorPage = () => {
         reviews.map(review => (
           <Card key={review.id} className="mb-3">
             <Card.Body>
-              <div className="d-flex justify-content-between">
-                <Card.Title>
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} style={{ color: i < review.rating ? '#ffc107' : '#e4e5e9' }}>★</span>
-                  ))}
-                </Card.Title>
-                <small className="text-muted">{new Date(review.createdAt).toLocaleDateString()}</small>
+              <div className="d-flex justify-content-between align-items-start">
+                <div>
+                    <Card.Title>
+                    {[...Array(5)].map((_, i) => (
+                        <span key={i} style={{ color: i < review.rating ? '#ffc107' : '#e4e5e9' }}>★</span>
+                    ))}
+                    </Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{review.patientName}</Card.Subtitle>
+                </div>
+                
+                <div className="text-end">
+                    <small className="text-muted d-block mb-1">
+                        {new Date(review.createdAt).toLocaleDateString()}
+                    </small>
+                    {user?.role === 'admin' && (
+                        <Button 
+                            variant="danger" 
+                            size="sm" 
+                            onClick={() => handleAdminDelete(review.id)}
+                            title="Usuń opinię jako Administrator"
+                        >
+                            Usuń
+                        </Button>
+                    )}
+                </div>
               </div>
-              <Card.Subtitle className="mb-2 text-muted">{review.patientName}</Card.Subtitle>
-              <Card.Text>{review.comment}</Card.Text>
+              <Card.Text className="mt-2">{review.comment}</Card.Text>
             </Card.Body>
           </Card>
         ))

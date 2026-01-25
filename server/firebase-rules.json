@@ -4,8 +4,9 @@
     ".write": false,
 
     "users": {
+      ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin'",
       "$uid": {
-        ".read": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin'",
+        ".read": "$uid === auth.uid", 
         ".write": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin'"
       }
     },

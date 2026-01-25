@@ -1,7 +1,8 @@
-import { ref, get, push, update, set, remove, runTransaction } from "firebase/database";
+import { ref, get, push, update, set, remove, runTransaction, orderByChild, limitToLast, query } from "firebase/database";
 import { db } from "./firebaseConfig";
 import type { BackendAPI } from "./backend.types";
 import type { Appointment, Absence, AvailabilityTemplate, PersistenceMode, AbsenceDto, Review, ReviewDto, Doctor } from "../interfaces/interfaces";
+import type { AppNotification } from "./notifications/notification.types";
 
 export const firebaseBackend: BackendAPI = {
   
@@ -85,11 +86,56 @@ export const firebaseBackend: BackendAPI = {
     return newId;
   },
 
+// async saveAbsence(absence: AbsenceDto): Promise<string> {
+//     const newRef = push(ref(db, "absences"));
+//     const newId = newRef.key as string;
+
+//     // Normalizacja daty absencji do stringa YYYY-MM-DD
+//     const absenceDateString = absence.date instanceof Date 
+//         ? absence.date.toISOString().split("T")[0] 
+//         : absence.date;
+
+//     await set(newRef, {
+//       ...absence,
+//       id: newId,
+//       date: absenceDateString
+//     });
+
+//     const apptsSnapshot = await get(ref(db, 'appointments'));
+    
+//     if (apptsSnapshot.exists()) {
+//         const allAppointments = Object.values(apptsSnapshot.val()) as Appointment[];
+        
+//         const affectedAppointments = allAppointments.filter(appt => {
+//             if (appt.doctorId !== absence.doctorId) return false;
+
+//             // split('T')[0] daje nam "2023-11-20"
+//             const apptDate = appt.startTime.split('T')[0];
+
+//             return apptDate === absenceDateString;
+//         });
+
+//         // Wysyłamy powiadomienia do znalezionych pacjentów
+//         const notificationPromises = affectedAppointments.map(appt => {
+//             const patientNotifRef = ref(db, `users/${appt.patientId}/notifications`);
+            
+//             return push(patientNotifRef, {
+//                 type: 'ALERT',
+//                 message: `Twoja wizyta zaplanowana na ${appt.startTime.replace('T', ' ').slice(0, 16)} została anulowana z powodu nieobecności lekarza!`,
+//                 timestamp: Date.now()
+//             });
+//         });
+
+//         await Promise.all(notificationPromises);
+//     }
+
+//     return newId;
+// },
+
 async saveAbsence(absence: AbsenceDto): Promise<string> {
     const newRef = push(ref(db, "absences"));
     const newId = newRef.key as string;
 
-    // Normalizacja daty absencji do stringa YYYY-MM-DD
     const absenceDateString = absence.date instanceof Date 
         ? absence.date.toISOString().split("T")[0] 
         : absence.date;
@@ -107,20 +153,30 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
         
         const affectedAppointments = allAppointments.filter(appt => {
             if (appt.doctorId !== absence.doctorId) return false;
-
-            // split('T')[0] daje nam "2023-11-20"
             const apptDate = appt.startTime.split('T')[0];
-
             return apptDate === absenceDateString;
         });
 
-        // Wysyłamy powiadomienia do znalezionych pacjentów
-        const notificationPromises = affectedAppointments.map(appt => {
-            const patientNotifRef = ref(db, `users/${appt.patientId}/notifications`);
+        
+        // Mapa: PatientID -> Najwcześniejsza godzina wizyty (string)
+        const patientsToNotify = new Map<string, string>();
+
+        affectedAppointments.forEach(appt => {
+            const currentEarliest = patientsToNotify.get(appt.patientId);
+            
+            // Jeśli nie ma jeszcze pacjenta na liście LUB ten slot jest wcześniejszy niż zapisany
+            // (np. mamy slot 09:30, a teraz trafiliśmy na 09:00 -> bierzemy 09:00 jako start wizyty)
+            if (!currentEarliest || appt.startTime < currentEarliest) {
+                patientsToNotify.set(appt.patientId, appt.startTime);
+            }
+        });
+
+        const notificationPromises = Array.from(patientsToNotify.entries()).map(([patientId, startTime]) => {
+            const patientNotifRef = ref(db, `users/${patientId}/notifications`);
             
             return push(patientNotifRef, {
                 type: 'ALERT',
-                message: `Twoja wizyta zaplanowana na ${appt.startTime.replace('T', ' ').slice(0, 16)} została anulowana z powodu nieobecności lekarza!`,
+                message: `Twoja wizyta zaplanowana na ${startTime.replace('T', ' ').slice(0, 16)} została anulowana z powodu nieobecności lekarza!`,
                 timestamp: Date.now()
             });
         });
@@ -309,5 +365,23 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
 
      // Jeśli transakcja przeszła, oznaczamy wizytę
      await set(apptRef, true);
+  },
+
+  async fetchNotifications(userId: string): Promise<AppNotification[]> {
+    const userNotifsRef = ref(db, `users/${userId}/notifications`);
+
+    const q = query(userNotifsRef, orderByChild('timestamp'), limitToLast(50));
+    const snapshot = await get(q);
+
+    if (!snapshot.exists()) return [];
+
+    const data = snapshot.val();
+
+    const notifications = Object.entries(data).map(([key, val]: any) => ({
+      id: key,
+      ...val
+    })) as AppNotification[];
+
+    return notifications.sort((a, b) => b.timestamp - a.timestamp);
   },
 };

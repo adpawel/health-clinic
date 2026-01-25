@@ -156,8 +156,12 @@ export class AuthController {
       );
 
       await this.db.updateUserSessionToken(user.id, accessToken);
+      const { password: _, activeRefreshToken: __, ...safeUser } = user;
 
-      res.json({ accessToken });
+      res.json({ 
+        accessToken,
+        user: safeUser
+      });
     });
   };
 

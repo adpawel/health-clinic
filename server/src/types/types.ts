@@ -97,3 +97,12 @@ export interface ReviewDto {
   rating: number;
   comment: string;
 }
+
+export interface AppNotification {
+  id: string;
+  userId: string;
+  type: 'ALERT' | 'INFO' | 'SUCCESS';
+  message: string;
+  timestamp: number;
+  read: boolean;
+}

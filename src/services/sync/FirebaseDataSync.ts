@@ -7,8 +7,6 @@ export const FirebaseDataSync: DataSyncAPI = {
   subscribe(resource: ResourceType, onUpdate: () => void) {
     const dataRef = ref(db, resource);
 
-    // Firebase onValue odpala się zawsze raz na start (z danymi początkowymi).
-    // Musimy to zignorować, żeby nie robić podwójnego pobierania przy montowaniu komponentu.
     let isInitialLoad = true;
 
     const callback = (snapshot: any) => {

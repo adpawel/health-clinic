@@ -14,6 +14,7 @@ import { DoctorDashboard } from "./pages/DoctorDashboard";
 import { NotificationToast } from "./components/NotificationToast";
 import { DoctorPage } from "./pages/DoctorReviews";
 import { GuestRoute } from "./components/Auth/GuestRoute";
+import { PatientNotifications } from "./pages/PatientNotifications";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           {/* --- STREFA PACJENTA --- */}
           <Route element={<ProtectedRoute allowedRoles={['patient']} />}>
              <Route path="/patient/dashboard" element={<PatientDashboardWrapper />} />
+             <Route path="/patient/notifications" element={<PatientNotifications />} />
           </Route>
 
           {/* --- STREFA LEKARZA --- */}

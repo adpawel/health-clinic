@@ -225,7 +225,7 @@ app.delete('/doctors/:id', authenticateToken, requireRole(['admin']), async (req
   res.sendStatus(200);
 });
 
-app.get('/users', authenticateToken, requireRole(['admin']), async (req, res) => {
+app.get('/users', authenticateToken, requireRole(['admin', 'patient']), async (req, res) => {
   const dbUsers = await db.getUsers();
   
   const safeUsers = dbUsers.map(u => {
@@ -339,6 +339,13 @@ app.delete('/reviews/:reviewId', authenticateToken, requireRole(['patient', 'adm
 
   await db.deleteReview(reviewId);
   res.json({ status: 'success' });
+});
+
+app.get('/notifications', authenticateToken, async (req, res) => {
+    // @ts-ignore
+    const userId = req.user.id;
+    const notifications = await db.getUserNotifications(userId);
+    res.json(notifications);
 });
 
 server.listen(PORT, () => {

@@ -1,7 +1,9 @@
 export interface AppNotification {
-  type: 'INFO' | 'ALERT' | 'SUCCESS';
+  id?: string;
+  type: 'ALERT' | 'INFO' | 'SUCCESS';
   message: string;
-  timestamp?: number;
+  timestamp: number;
+  read?: boolean;
 }
 
 export interface NotificationServiceAPI {

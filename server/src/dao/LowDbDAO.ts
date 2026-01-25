@@ -9,7 +9,8 @@ import {
     PersistenceMode, 
     DBUser,
     Review,
-    ReviewDto
+    ReviewDto,
+    AppNotification
 } from '../types/types.js';
 
 interface Data {
@@ -20,6 +21,7 @@ interface Data {
   availabilities: Record<string, AvailabilityTemplate>;
   reviews: Review[];
   system_config: { persistenceMode: PersistenceMode };
+  notifications: AppNotification[];
 }
 
 const defaultData: Data = {
@@ -29,7 +31,8 @@ const defaultData: Data = {
   absences: {},
   availabilities: {},
   reviews: [],
-  system_config: { persistenceMode: 'LOCAL' }
+  system_config: { persistenceMode: 'LOCAL' },
+  notifications: []
 };
 
 export class LowDbDAO implements DatabaseDAO {
@@ -50,6 +53,7 @@ export class LowDbDAO implements DatabaseDAO {
     this.db.data.availabilities ||= {};
     this.db.data.reviews ||= [];
     this.db.data.system_config ||= { persistenceMode: 'LOCAL' };
+    this.db.data.notifications ||= [];
   }
 
   async getAppointments(doctorId?: string): Promise<Appointment[]> {
@@ -299,5 +303,24 @@ export class LowDbDAO implements DatabaseDAO {
         this.db.data.users[userId].activeAccessToken = token;
         await this.db.write();
     }
+  }
+
+  async saveNotification(notificationData: Omit<AppNotification, 'id'>): Promise<void> {
+    await this.init();
+
+    const newNotification: AppNotification = {
+      id: `notif_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      ...notificationData
+    };
+
+    this.db.data.notifications.push(newNotification);
+    await this.db.write();
+  }
+
+  async getUserNotifications(userId: string): Promise<AppNotification[]> {
+    await this.init();
+    return this.db.data.notifications
+      .filter(n => n.userId === userId)
+      .sort((a, b) => b.timestamp - a.timestamp);
   }
 }

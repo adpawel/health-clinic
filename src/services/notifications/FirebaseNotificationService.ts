@@ -13,7 +13,6 @@ export const FirebaseNotificationService: NotificationServiceAPI = {
 
   disconnect() {
     currentUserId = null;
-    // Listenery odpinamy w funkcji zwracanej przez subscribe
   },
 
   subscribe(callback) {

@@ -2,7 +2,8 @@ import mongoose, { Schema, Model, Document } from 'mongoose';
 import { 
   Appointment, AppointmentDto, Doctor, DoctorDto, Absence, AbsenceDto, 
   AvailabilityTemplate, AvailabilityTemplateDto, DBUser, UserRole, 
-  PersistenceMode, Review, ReviewDto 
+  PersistenceMode, Review, ReviewDto, 
+  AppNotification
 } from '../types/types.js';
 import { DatabaseDAO } from './DatabaseDAO.js';
 
@@ -75,6 +76,14 @@ const ConfigSchema = new Schema({
   persistenceMode: { type: String, enum: ['LOCAL', 'SESSION', 'NONE'], default: 'LOCAL' }
 });
 
+const NotificationSchema = new Schema({
+  userId: { type: String, required: true, index: true },
+  type: { type: String, enum: ['ALERT', 'INFO', 'SUCCESS'], required: true },
+  message: { type: String, required: true },
+  timestamp: { type: Number, default: Date.now },
+  read: { type: Boolean, default: false }
+});
+
 const UserModel = mongoose.model('User', UserSchema);
 const DoctorModel = mongoose.model('Doctor', DoctorSchema);
 const AppointmentModel = mongoose.model('Appointment', AppointmentSchema);
@@ -82,7 +91,7 @@ const AbsenceModel = mongoose.model('Absence', AbsenceSchema);
 const AvailabilityModel = mongoose.model('Availability', AvailabilitySchema);
 const ReviewModel = mongoose.model('Review', ReviewSchema);
 const ConfigModel = mongoose.model('Config', ConfigSchema);
-
+const NotificationModel = mongoose.model('Notification', NotificationSchema);
 
 export class MongoDAO implements DatabaseDAO {
   
@@ -95,19 +104,18 @@ export class MongoDAO implements DatabaseDAO {
       try {
         const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/med-app';
         await mongoose.connect(uri);
-        console.log("✅ Połączono z MongoDB Atlas");
+        console.log("Połączono z MongoDB Atlas");
         
         const config = await ConfigModel.findOne({ key: 'main_config' });
         if (!config) {
             await ConfigModel.create({ key: 'main_config', persistenceMode: 'LOCAL' });
         }
       } catch (error) {
-        console.error("❌ Błąd połączenia z MongoDB:", error);
+        console.error("Błąd połączenia z MongoDB:", error);
       }
     }
   }
 
-  // Helper do mapowania _id (ObjectId) na id (string) dla frontendu
   private mapDoc<T>(doc: any): T {
     if (!doc) return doc;
     const { _id, __v, ...rest } = doc.toObject ? doc.toObject() : doc;
@@ -274,5 +282,18 @@ export class MongoDAO implements DatabaseDAO {
 
   async deleteReview(reviewId: string): Promise<void> {
     await ReviewModel.findByIdAndDelete(reviewId);
+  }
+
+  async saveNotification(notificationData: Omit<AppNotification, 'id'>): Promise<void> {
+    await NotificationModel.create({
+        ...notificationData,
+        timestamp: notificationData.timestamp || Date.now()
+    });
+  }
+
+  async getUserNotifications(userId: string): Promise<AppNotification[]> {
+    const docs = await NotificationModel.find({ userId }).sort({ timestamp: -1 });
+
+    return docs.map(doc => this.mapDoc<AppNotification>(doc));
   }
 }

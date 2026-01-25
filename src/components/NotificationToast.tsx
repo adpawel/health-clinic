@@ -38,7 +38,7 @@ export const NotificationToast = () => {
       zIndex: 9999,
       animation: 'slideIn 0.5s ease-out'
     }}>
-      <strong>🔔 Powiadomienie:</strong>
+      <strong>Powiadomienie:</strong>
       <div>{notification.message}</div>
     </div>
   );

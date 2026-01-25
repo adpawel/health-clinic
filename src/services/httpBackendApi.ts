@@ -26,7 +26,6 @@ export class HttpBackendAPI implements BackendAPI {
   }
 
   private async performRefresh(): Promise<string | null> {
-    // Jeśli odświeżanie już trwa, zwracamy istniejącą obietnicę (wszyscy czekają na ten sam wynik)
     if (isRefreshing && refreshPromise) {
       return refreshPromise;
     }
@@ -39,7 +38,6 @@ export class HttpBackendAPI implements BackendAPI {
         return null;
     }
 
-    // Tworzymy obietnicę odświeżania
     refreshPromise = (async () => {
       try {
         const res = await fetch(`${this.baseUrl}/api/auth/refresh`, {
@@ -50,7 +48,6 @@ export class HttpBackendAPI implements BackendAPI {
 
         if (res.ok) {
           const data = await res.json();
-          // Zapisujemy nowe tokeny
           TokenManager.saveTokens(data.accessToken, data.refreshToken || refreshToken);
           return data.accessToken;
         } else {
@@ -62,7 +59,6 @@ export class HttpBackendAPI implements BackendAPI {
         console.error("Refresh network error:", e);
         return null;
       } finally {
-        // Zwalniamy blokadę
         isRefreshing = false;
         refreshPromise = null;
       }

@@ -4,24 +4,26 @@
     ".write": false,
 
     "users": {
-      ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".read": "auth != null",
+
       "$uid": {
-        ".read": "$uid === auth.uid", 
-        ".write": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin'"
+        ".read": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'doctor'",
+        ".write": "$uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'doctor'",
+        
+        "notifications": {
+          ".indexOn": ["timestamp"],
+          ".read": "auth != null",
+          ".write": "auth != null"
+        }
       }
     },
 
     "appointments": {
-      ".read": "auth != null", 
+      ".read": "auth != null",
       ".indexOn": ["doctorId", "patientId"],
       "$appointmentId": {
-        ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin' || 
-                  data.child('patientId').val() === auth.uid || 
-                  data.child('doctorId').val() === auth.uid",
-        
-        ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin' || 
-                   newData.child('patientId').val() === auth.uid || 
-                   (!newData.exists() && data.child('patientId').val() === auth.uid)" 
+        ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('patientId').val() === auth.uid || data.child('doctorId').val() === auth.uid",
+        ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'doctor' || newData.child('patientId').val() === auth.uid || (!newData.exists() && data.child('patientId').val() === auth.uid)"
       }
     },
 
@@ -35,9 +37,14 @@
        ".write": "root.child('users').child(auth.uid).child('role').val() === 'doctor' || root.child('users').child(auth.uid).child('role').val() === 'admin'"
     },
     
+    "availability": {
+       ".read": "auth != null",
+       ".write": "root.child('users').child(auth.uid).child('role').val() === 'doctor' || root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    },
+
     "reviews": {
       ".read": true,
-      ".write": "auth != null && (newData.child('patientId').val() === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin')"
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'"
     },
     
     "system_config": {

@@ -55,7 +55,6 @@ export class AuthController {
     if (linkedDoctorId) {
         assignedRole = 'doctor';
 
-        // Musimy pobrać pełne dane lekarza z bazy
         const doctorProfile = await this.db.findDoctorById(linkedDoctorId);
         if (doctorProfile) {
             const inputFirst = firstName.trim().toLowerCase();
@@ -112,19 +111,16 @@ export class AuthController {
   login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     
-    // 1. Pobieramy usera z bazy (to jest DBUser, ma pole password)
     const user = await this.db.findUserByEmail(email);
 
     if (!user) return res.status(400).json({ message: "Błąd logowania." });
 
-    // 2. Weryfikacja hasła (bcrypt porównuje tekst z hashem z bazy)
     if (!user.password) {
         return res.status(400).json({ message: "Użytkownik zewnętrzny (brak hasła lokalnego)." });
     }
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(400).json({ message: "Błąd logowania." });
 
-    // 3. Generujemy tokeny
     const tokens = this.generateTokens(user);
     await this.db.updateUserRefreshToken(user.id, tokens.refreshToken);
     await this.db.updateUserSessionToken(user.id, tokens.accessToken);
@@ -148,19 +144,14 @@ export class AuthController {
 
     jwt.verify(token, REFRESH_SECRET, async (err: any, decoded: any) => {
       if (err) return res.sendStatus(403);
-      // 2. Weryfikacja w bazie (Single Session)
-      // Musimy sprawdzić, czy ten token jest tym "aktywnym" w bazie
       const users = await this.db.getUsers();
       // @ts-ignore
       const user = users.find(u => u.id === decoded.id);
 
       if (!user || user.activeRefreshToken !== token) {
-        // Ktoś zalogował się w innym oknie -> ten token jest spalony
         return res.status(403).json({ message: "Sesja wygasła (zalogowano na innym urządzeniu)." });
       }
 
-      // 3. Generuj nowy Access Token (Refresh Token zostaje ten sam, lub można go też rotować)
-      // W tym przykładzie rotujemy tylko Access Token
       const accessToken = jwt.sign(
         { id: user.id, role: user.role, email: user.email },
         ACCESS_SECRET,
@@ -178,7 +169,6 @@ export class AuthController {
     });
   };
 
-  // --- WYLOGOWANIE ---
   logout = async (req: Request, res: Response) => {
     const { userId } = req.body;
     if (userId) {

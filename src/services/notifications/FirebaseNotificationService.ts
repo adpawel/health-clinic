@@ -34,7 +34,7 @@ export const FirebaseNotificationService: NotificationServiceAPI = {
     };
   },
 
-  async send(notification: AppNotification) {
+  async send(_notification: AppNotification) {
       console.warn("W modelu celowanym użyj logiki backendu do wysyłania powiadomień.");
   }
 };

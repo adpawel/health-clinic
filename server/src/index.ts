@@ -107,7 +107,6 @@ app.post('/api/config/global', (req, res) => {
     res.json({ success: true, mode: appMode });
 });
 
-// --- TRASY AUTH (PUBLICZNE) ---
 app.post('/api/auth/register', authController.register);
 app.post('/api/auth/login', authController.login);
 app.post('/api/auth/refresh', authController.refreshToken);

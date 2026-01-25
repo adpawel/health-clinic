@@ -2,7 +2,7 @@ import { Server } from 'socket.io';
 import { AvailabilityTemplateDto } from '../types/types.js';
 
 export class AvailabilityService {
-  private db: any; // MongoDAO | LowDbDAO
+  private db: any;
   private io: Server;
 
   constructor(db: any, io: Server) {

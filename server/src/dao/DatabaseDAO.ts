@@ -1,7 +1,6 @@
 import { Absence, AbsenceDto, AppNotification, Appointment, AppointmentDto, AvailabilityTemplate, AvailabilityTemplateDto, Doctor, DoctorDto, PersistenceMode, User } from "src/types/types.js";
 
 export interface DatabaseDAO {
-  // --- Appointments ---
   getAppointments(doctorId?: string): Promise<Appointment[]>;
   saveAppointment(appointment: AppointmentDto): Promise<string>;
   deleteAppointment(id: string): Promise<void>;

@@ -4,10 +4,8 @@ import { TokenManager } from "./TokenManager";
 
 const API_URL = "http://localhost:3000/api/auth";
 
-// 1. Tablica do przechowywania funkcji nasłuchujących (to są te funkcje z AuthContext)
 let observers: ((user: User | null) => void)[] = [];
 
-// 2. Funkcja pomocnicza do powiadamiania wszystkich zainteresowanych (Contextu)
 const notifyObservers = (user: User | null) => {
   observers.forEach((callback) => callback(user));
 };
@@ -28,10 +26,8 @@ export const customAuthService: AuthAPI = {
 
     const data = await res.json();
     
-    // Zapisz tokeny
     TokenManager.saveTokens(data.accessToken, data.refreshToken);
 
-    // 3. KLUCZOWY MOMENT: Powiadamiamy AuthContext, że mamy użytkownika!
     notifyObservers(data.user);
 
     return data.user;
@@ -52,22 +48,16 @@ export const customAuthService: AuthAPI = {
     const data = await res.json();
     TokenManager.saveTokens(data.accessToken, data.refreshToken);
     
-    // 3. KLUCZOWY MOMENT: Tu też powiadamiamy po rejestracji
     notifyObservers(data.user);
     
     return data.user;
   },
 
   async logout() {
-    // Opcjonalny strzał do backendu wylogowania...
     
     TokenManager.clearTokens();
     
-    // 3. KLUCZOWY MOMENT: Powiadamiamy, że użytkownik to teraz null
     notifyObservers(null);
-    
-    // Opcjonalnie: twarde odświeżenie, ale przy działającym Contexcie nie jest konieczne
-    // window.location.href = "/login"; 
   },
 
   onAuthStateChange(callback) {
@@ -93,7 +83,7 @@ export const customAuthService: AuthAPI = {
                 if (refreshRes.ok) {
                     const data = await refreshRes.json();
                     TokenManager.saveTokens(data.accessToken, refreshToken);
-                    token = data.accessToken; // Mamy nowy, świeży token!
+                    token = data.accessToken;
                 } else {
                     throw new Error("Refresh token expired");
                 }

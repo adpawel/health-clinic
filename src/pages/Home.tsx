@@ -74,8 +74,8 @@ const Home = () => {
         <img 
             src={logo} 
             alt="Logo HealthClinic" 
-            style={{ height: '100px', width: 'auto' }} /* Możesz dostosować rozmiar */
-            className="mb-3" /* Margines od dołu, żeby nie dotykało napisu */
+            style={{ height: '100px', width: 'auto' }}
+            className="mb-3"
         />
 
         <h1 className="display-4">Witamy w HealthClinic</h1>

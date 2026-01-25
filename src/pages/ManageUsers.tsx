@@ -7,7 +7,7 @@ export const ManageUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const backend = getBackend();
-  const { user: currentUser } = useAuth(); // Potrzebne, żeby nie zbanować samego siebie
+  const { user: currentUser } = useAuth();
 
   useEffect(() => {
     loadUsers();
@@ -25,7 +25,6 @@ export const ManageUsers = () => {
   };
 
   const handleBanToggle = async (targetUser: User) => {
-    // Zabezpieczenie: Admin nie może zbanować samego siebie
     if (targetUser.id === currentUser?.id) {
         alert("Nie możesz zbanować samego siebie!");
         return;
@@ -36,7 +35,6 @@ export const ManageUsers = () => {
     try {
         await backend.toggleUserBan(targetUser.id, newStatus);
         
-        // Aktualizujemy stan lokalnie, żeby nie odświeżać całej listy z serwera
         setUsers(prev => prev.map(u => 
             u.id === targetUser.id ? { ...u, isBanned: newStatus } : u
         ));
@@ -45,7 +43,6 @@ export const ManageUsers = () => {
     }
   };
 
-  // Funkcja pomocnicza do kolorowania ról (dla estetyki)
   const getRoleBadgeColor = (role: string) => {
     switch(role) {
         case 'admin': return 'bg-warning text-dark';
@@ -79,26 +76,22 @@ export const ManageUsers = () => {
             <tbody>
               {users.map(u => (
                 <tr key={u.id} className={u.isBanned ? "table-danger bg-opacity-10" : ""}>
-                  {/* Kolumna 1: Email i ID */}
                   <td>
                     <div className="fw-bold">{u.email}</div>
                     <small className="text-muted" style={{fontSize: "0.75em"}}>{u.id}</small>
                   </td>
 
-                  {/* Kolumna 2: Dane osobowe */}
                   <td>
                     {u.firstName} {u.lastName}
                     {u.pesel && <div className="small text-muted">PESEL: {u.pesel}</div>}
                   </td>
 
-                  {/* Kolumna 3: Rola (Tylko do odczytu) */}
                   <td>
                     <span className={`badge ${getRoleBadgeColor(u.role)}`}>
                         {u.role?.toUpperCase()}
                     </span>
                   </td>
 
-                  {/* Kolumna 4: Status */}
                   <td>
                     {u.isBanned ? (
                         <span className="text-danger fw-bold"><i className="bi bi-x-circle"></i> Zbanowany</span>

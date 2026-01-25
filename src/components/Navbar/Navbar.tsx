@@ -23,7 +23,6 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <div className="navbar-nav me-auto">
 
-           {/* --- MENU PACJENTA --- */}
            {user?.role === 'patient' && (
              <>
                <Link to="/patient/dashboard" className="nav-link">Harmonogramy</Link>
@@ -35,7 +34,6 @@ const Navbar = () => {
               <Link to="/doctor/dashboard" className="nav-link">Mój Harmonogram</Link>
            )}
 
-           {/* --- MENU ADMINA --- */}
            {user?.role === 'admin' && (
              <>
                <Link to="/admin/dashboard" className="nav-link fw-bold">

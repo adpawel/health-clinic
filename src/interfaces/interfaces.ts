@@ -4,7 +4,7 @@ export interface AppointmentDto {
   patientGender: string;
   patientAge: number;
   type: string;
-  startTime: string; // ISO string
+  startTime: string;
   durationMinutes: number;
   isPaid: boolean;
   notes: string;

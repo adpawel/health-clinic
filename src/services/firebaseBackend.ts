@@ -86,52 +86,6 @@ export const firebaseBackend: BackendAPI = {
     return newId;
   },
 
-// async saveAbsence(absence: AbsenceDto): Promise<string> {
-//     const newRef = push(ref(db, "absences"));
-//     const newId = newRef.key as string;
-
-//     // Normalizacja daty absencji do stringa YYYY-MM-DD
-//     const absenceDateString = absence.date instanceof Date 
-//         ? absence.date.toISOString().split("T")[0] 
-//         : absence.date;
-
-//     await set(newRef, {
-//       ...absence,
-//       id: newId,
-//       date: absenceDateString
-//     });
-
-//     const apptsSnapshot = await get(ref(db, 'appointments'));
-    
-//     if (apptsSnapshot.exists()) {
-//         const allAppointments = Object.values(apptsSnapshot.val()) as Appointment[];
-        
-//         const affectedAppointments = allAppointments.filter(appt => {
-//             if (appt.doctorId !== absence.doctorId) return false;
-
-//             // split('T')[0] daje nam "2023-11-20"
-//             const apptDate = appt.startTime.split('T')[0];
-
-//             return apptDate === absenceDateString;
-//         });
-
-//         // Wysyłamy powiadomienia do znalezionych pacjentów
-//         const notificationPromises = affectedAppointments.map(appt => {
-//             const patientNotifRef = ref(db, `users/${appt.patientId}/notifications`);
-            
-//             return push(patientNotifRef, {
-//                 type: 'ALERT',
-//                 message: `Twoja wizyta zaplanowana na ${appt.startTime.replace('T', ' ').slice(0, 16)} została anulowana z powodu nieobecności lekarza!`,
-//                 timestamp: Date.now()
-//             });
-//         });
-
-//         await Promise.all(notificationPromises);
-//     }
-
-//     return newId;
-// },
-
 async saveAbsence(absence: AbsenceDto): Promise<string> {
     const newRef = push(ref(db, "absences"));
     const newId = newRef.key as string;
@@ -355,12 +309,11 @@ async saveAbsence(absence: AbsenceDto): Promise<string> {
      const apptRef = ref(db, `appointments/${appointmentId}/isPaid`);
 
      await runTransaction(userRef, (currentBalance) => {
-        if (currentBalance === null) return 1000; // Fallback
+        if (currentBalance === null) return 1000;
         if (currentBalance < cost) throw new Error("Niewystarczające środki!");
         return currentBalance - cost;
      });
 
-     // Jeśli transakcja przeszła, oznaczamy wizytę
      await set(apptRef, true);
   },
 

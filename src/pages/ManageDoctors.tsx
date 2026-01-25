@@ -6,7 +6,6 @@ export const ManageDoctors = () => {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // Stan formularza
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -96,7 +95,6 @@ export const ManageDoctors = () => {
     <div className="container mt-4">
       <h2 className="mb-4">Zarządzanie Lekarzami</h2>
 
-      {/* --- FORMULARZ DODAWANIA --- */}
       <div className="card shadow-sm mb-5">
         <div className="card-header bg-brand text-white">
             <i className="bi bi-person-plus-fill me-2"></i>
@@ -177,7 +175,6 @@ export const ManageDoctors = () => {
         </div>
       </div>
 
-      {/* --- TABELA LEKARZY --- */}
       <h4 className="mb-3">Lista Lekarzy w Systemie</h4>
       <div className="card shadow-sm">
         <div className="table-responsive">

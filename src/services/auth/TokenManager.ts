@@ -3,7 +3,6 @@ import type { PersistenceMode } from "../../interfaces/interfaces";
 let memoryAccessToken: string | null = null;
 let memoryRefreshToken: string | null = null;
 
-// Domyślny tryb (dopóki nie pobierzemy z configu)
 let currentMode: PersistenceMode = 'LOCAL'; 
 
 export const TokenManager = {
@@ -23,7 +22,6 @@ export const TokenManager = {
       sessionStorage.setItem('accessToken', accessToken);
       sessionStorage.setItem('refreshToken', refreshToken);
     } else {
-      // NONE - pamięć RAM
       memoryAccessToken = accessToken;
       memoryRefreshToken = refreshToken;
     }

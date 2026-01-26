@@ -1,592 +1,186 @@
 {
   "appointments": {
-    "appt_1769361915215_3gt61jt85": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "patientId": "user_1769260315119",
-      "patientName": "Klimek",
+    "appt_1769451928819_us1198nuj": {
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "patientId": "user_1769451786516",
+      "patientName": "Kamil Stoch",
       "patientGender": "M",
-      "patientAge": 78,
+      "patientAge": 34,
       "type": "wizyta kontrolna",
-      "startTime": "2026-03-18T09:00",
+      "startTime": "2026-02-03T08:30",
       "isPaid": true,
       "cost": 140,
       "durationMinutes": 60,
-      "notes": "",
-      "id": "appt_1769361915215_3gt61jt85"
+      "notes": "Kontrola",
+      "reservedAt": 1769451928819,
+      "id": "appt_1769451928819_us1198nuj"
+    },
+    "appt_1769454390080_lohhnw27i": {
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "patientId": "user_1769451786516",
+      "patientName": "Kamil Stoch",
+      "patientGender": "M",
+      "patientAge": 34,
+      "type": "pierwsza wizyta",
+      "startTime": "2026-01-27T08:00",
+      "isPaid": true,
+      "cost": 210,
+      "durationMinutes": 90,
+      "notes": "ból zęba",
+      "reservedAt": 1769454390079,
+      "id": "appt_1769454390080_lohhnw27i"
+    },
+    "appt_1769454430616_qaqqab3dq": {
+      "doctorId": "doc_1769451420163_g53vqfyjo",
+      "patientId": "user_1769451786516",
+      "patientName": "Kamil Stoch",
+      "patientGender": "M",
+      "patientAge": 34,
+      "type": "pierwsza wizyta",
+      "startTime": "2026-01-28T09:00",
+      "isPaid": true,
+      "cost": 140,
+      "durationMinutes": 60,
+      "notes": "diagnoza",
+      "reservedAt": 1769454430616,
+      "id": "appt_1769454430616_qaqqab3dq"
     }
   },
   "doctors": {
-    "doc_1767527003678_37wu220so": {
-      "firstName": "Roman",
-      "lastName": "Chojnacki",
-      "title": "lek.",
+    "doc_1769451420163_g53vqfyjo": {
+      "firstName": "Jan",
+      "lastName": "Nowak",
+      "title": "dr hab.",
       "specializations": [
         "Kardiolog",
-        "Internista"
+        "Neurolog"
       ],
-      "email": "rchojnacki@gmail.com",
-      "id": "doc_1767527003678_37wu220so"
+      "email": "jnowak@gmail.com",
+      "id": "doc_1769451420163_g53vqfyjo"
     },
-    "doc_1767539694858_zp8pug6yo": {
-      "firstName": "Irena",
+    "doc_1769451459474_xif2h764z": {
+      "firstName": "Katarzyna",
       "lastName": "Kowalska",
-      "title": "dr n. med.",
+      "title": "lek. stom.",
       "specializations": [
-        "Laryngolog"
+        "Stomatolog"
       ],
-      "email": "ikowalska@gmail.com",
-      "id": "doc_1767539694858_zp8pug6yo"
-    },
-    "doc_1769352710970_vku41xcpt": {
-      "firstName": "Maria",
-      "lastName": "Stępień",
-      "title": "lek.",
-      "specializations": [
-        "Kardiolog"
-      ],
-      "email": "mstepien@gmail.com",
-      "id": "doc_1769352710970_vku41xcpt"
+      "email": "kkowalska@gmail.com",
+      "id": "doc_1769451459474_xif2h764z"
     }
   },
   "users": {
-    "user_1767444599043": {
-      "email": "adpawel04@gmail.com",
-      "id": "user_1767444599043",
-      "password": "$2b$10$tGw3KjvdsJqRqZCPvVZ8Kute1ZOuz0j9X6ORyrdlbrpSR2QhJ8cPS",
-      "firstName": "Paweł ",
-      "lastName": "Adamczyk",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzQ0NDU5OTA0MyIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJhZHBhd2VsMDRAZ21haWwuY29tIiwiaWF0IjoxNzY4MDMyMjMyLCJleHAiOjE3NjgwMzIyOTJ9.i_nwCE4rQkxbzRVp9iypTRQu6JaZwe1Ut-RM9GjCM9o"
-    },
-    "user_1767526900571": {
+    "user_1769451297743": {
       "email": "admin@gmail.com",
-      "id": "user_1767526900571",
-      "password": "$2b$10$Mnga8IfDpt/RcXm7sINT2uz8rC.owivab6TLNg42Uj9Wrgdkp1MKq",
+      "id": "user_1769451297743",
+      "password": "$2b$10$V1jKYDcBEZg4vmV7c1TfsO2HbQHo8asS.zL55FxhO0XwQzt9Fw79q",
       "firstName": "Admin",
       "lastName": "Admin",
       "role": "admin",
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsImlhdCI6MTc2OTM2ODkyMiwiZXhwIjoxNzY5OTczNzIyfQ.NKSBW6iYmA63RQ1QKzkYXuDRn38rplF0w1KOw-GEY84",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNjkwMDU3MSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5MzY4OTIyLCJleHAiOjE3NjkzNjg5ODJ9.rcR3mr3heGwfSL7-lYRgUhCs5DzBCSUjWcc1_0fxa9s"
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTI5Nzc0MyIsImlhdCI6MTc2OTQ1MzkyNCwiZXhwIjoxNzcwMDU4NzI0fQ.USS4Z5vvQC_Hg7IXQjXCjC09vnUXPdTRNS5U2dUiudQ",
+      "walletBalance": 1000,
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTI5Nzc0MyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY5NDU0MDg2LCJleHAiOjE3Njk0NTQxNDZ9.buo7xyuqVvRRYxIq5tRSOOmwWq4I_QTMMpxc9cLe-JE"
     },
-    "user_1767527070737": {
-      "email": "rchojnacki@gmail.com",
-      "id": "user_1767527070737",
-      "password": "$2b$10$pZND5QUBoQ0jek10O6dqX..P6hVOsxEsWY3i564SAui/Qfr31gfdS",
-      "firstName": "Roman",
-      "lastName": "Chojnacki",
+    "user_1769451494939": {
+      "email": "kkowalska@gmail.com",
+      "id": "user_1769451494939",
+      "password": "$2b$10$xqBL9PI6Hh/vUvQC.VuRnumdAPabIlGGCZIhkd4XG0nibmd3OGPX6",
+      "firstName": "Katarzyna",
+      "lastName": "Kowalska",
       "role": "doctor",
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": null,
-      "doctorId": "doc_1767527003678_37wu220so",
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyNzA3MDczNyIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6InJjaG9qbmFja2lAZ21haWwuY29tIiwiaWF0IjoxNzY5MzY4ODQ3LCJleHAiOjE3NjkzNjg5MDd9.eHXuqa08_xS7vRtlCJ7N085AqZNpkCvnVoQ3Y2Clpyk"
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTQ5NDkzOSIsImlhdCI6MTc2OTQ1NDI1NiwiZXhwIjoxNzcwMDU5MDU2fQ.vQJ9rGyxSiIDwTfRGibP4HVM1cz9f6Es1koF0z50YHA",
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "walletBalance": 1000,
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTQ5NDkzOSIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6Imtrb3dhbHNrYUBnbWFpbC5jb20iLCJpYXQiOjE3Njk0NTQ4MjYsImV4cCI6MTc2OTQ1NDg4Nn0.nxbSoe855io3AsJsbtGFhf30C02AKhl3IiF-Jrn6UvQ"
     },
-    "user_1767529854942": {
-      "email": "jwidawska@gmail.com",
-      "id": "user_1767529854942",
-      "password": "$2b$10$VXfjfv9d000OCJfdZE0Bs.kLUvY6qgxidzQ2QFfTKJlwbTaWFx/m2",
-      "firstName": "Janina",
-      "lastName": "Widawska",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzUyOTg1NDk0MiIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJqd2lkYXdza2FAZ21haWwuY29tIiwiaWF0IjoxNzY4MDc4NTY3LCJleHAiOjE3NjgwNzg2Mjd9.0hMt7TapIUSyi2vyRP6V9I479-d8cFdfb9ZqT2F8Yuc"
-    },
-    "user_1767539548872": {
-      "email": "pwasek@gmail.com",
-      "id": "user_1767539548872",
-      "password": "$2b$10$4bZymidJf.u4GSKHDxXlvuiAAoMDLczt8EBm.fp56GJPz.k55dIcK",
-      "firstName": "Paweł",
-      "lastName": "Wąsek",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null
-    },
-    "user_1767902327948": {
-      "email": "jzieba@gmail.com",
-      "id": "user_1767902327948",
-      "password": "$2b$10$4cg9lHVuKeyoYKB1k.sJ3.yDv9FGFa6f1mIL5w./RvRNEzdRQo8RS",
+    "user_1769451517389": {
+      "email": "jnowak@gmail.com",
+      "id": "user_1769451517389",
+      "password": "$2b$10$zkN0mmKlMDGXfr2QwWJgUe6/OeDGYgEw9ag9dPDcH2V/Q0x.gH01a",
       "firstName": "Jan",
-      "lastName": "Zięba",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2NzkwMjMyNzk0OCIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJqemllYmFAZ21haWwuY29tIiwiaWF0IjoxNzY4MDQxMjE1LCJleHAiOjE3NjgwNDEyNzV9.uoLMUWMYoke-BjaeAuqwt71pp-7wQB28t1E0fgLBX6Q"
-    },
-    "user_1767985728409": {
-      "email": "jwrona@gmail.com",
-      "id": "user_1767985728409",
-      "password": "$2b$10$PW7jCf3PVbaM3MGGyg9zHOO.oxIqPC2JVNy..NrEiQvgnGe9jy5UC",
-      "firstName": "Jakub",
-      "lastName": "Wrona",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000
-    },
-    "user_1767985786535": {
-      "email": "ikowalska@gmail.com",
-      "id": "user_1767985786535",
-      "password": "$2b$10$5j.R5fnZed43PE.w5O6TFOmCBvVych5CeJuJpfKIItZmEgM47NBdi",
-      "firstName": "Irena",
-      "lastName": "Kowalska",
+      "lastName": "Nowak",
       "role": "doctor",
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
       "activeRefreshToken": null,
-      "doctorId": "doc_1767539694858_zp8pug6yo",
+      "doctorId": "doc_1769451420163_g53vqfyjo",
       "walletBalance": 1000,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2Nzk4NTc4NjUzNSIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6Imlrb3dhbHNrYUBnbWFpbC5jb20iLCJpYXQiOjE3NjkzNjE1NjYsImV4cCI6MTc2OTM2MTYyNn0.VCAQWZTPxh2q09BkYDTSadshtgJuQ7qszNekTx3C6xo"
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTUxNzM4OSIsInJvbGUiOiJkb2N0b3IiLCJlbWFpbCI6Impub3dha0BnbWFpbC5jb20iLCJpYXQiOjE3Njk0NTE1ODcsImV4cCI6MTc2OTQ1MTY0N30.4x3EiJtKNwPXqUtURpAjnlVPCRaMzjyyFslAIeY-nhk"
     },
-    "user_1767986019374": {
-      "email": "hwrona@gmail.com",
-      "id": "user_1767986019374",
-      "password": "$2b$10$9w/GoNtSsLqvCAs60iQBrOmvnbxy6CmeWlEOUkGEt3BaW8MuWfCWe",
-      "firstName": "Halina",
-      "lastName": "Wrona",
+    "user_1769451786516": {
+      "email": "kstoch@gmail.com",
+      "id": "user_1769451786516",
+      "password": "$2b$10$u8E19Hhx0W2V6yuR9YgepO7pvaiSZJYHVhv3cF2x/4kHvNbbGNBoC",
+      "firstName": "Kamil",
+      "lastName": "Stoch",
       "role": "patient",
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTc4NjUxNiIsImlhdCI6MTc2OTQ1NDk2MSwiZXhwIjoxNzcwMDU5NzYxfQ._eVkHd4yX30kdMPzEnBOOEMt-9chJWdJg_9--6zGwdY",
+      "walletBalance": 510,
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTc4NjUxNiIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJrc3RvY2hAZ21haWwuY29tIiwiaWF0IjoxNzY5NDU1MTMyLCJleHAiOjE3Njk0NTUxOTJ9.yLMXrCH6tWzSfI1rnrxTtFeQrOFHWnRoh9J0dcZ3Oek"
     },
-    "user_1767986160330": {
-      "email": "mwrona@gmail.com",
-      "id": "user_1767986160330",
-      "password": "$2b$10$Cz1Dc2ENvhwk0QhqgNUoZOZi3XEU7k2v7Fy2/OFdL9Iuk0uwK9lda",
+    "user_1769451967113": {
+      "email": "mgorska@gmail.com",
+      "id": "user_1769451967113",
+      "password": "$2b$10$RGG1whKBfNf0AaAyXos3VuegNycmaiMXhub0jxlR8fjT2.j3TD3mW",
       "firstName": "Maria",
-      "lastName": "Wrona",
+      "lastName": "Górska",
       "role": "patient",
       "pesel": "",
       "phoneNumber": "",
       "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000
-    },
-    "user_1767986516723": {
-      "email": "swrona@gmail.com",
-      "id": "user_1767986516723",
-      "password": "$2b$10$n1gBgtU1yJycT554aGPtEewPK76cwWXsaXaeRynHJcMDKqh5Nf2P.",
-      "firstName": "Stanisław",
-      "lastName": "Wrona",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 860,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2Nzk4NjUxNjcyMyIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJzd3JvbmFAZ21haWwuY29tIiwiaWF0IjoxNzY4MDM4NDU2LCJleHAiOjE3NjgwMzg1MTZ9.4NjfInSzI64V9LHEbWIgL5fsABw5MtCkBRZL9DPFxNs"
-    },
-    "user_1768078600858": {
-      "email": "fkot@gmail.com",
-      "id": "user_1768078600858",
-      "password": "$2b$10$TjGN15OzUUM4O66qiG5Ose7WH91RZou0TQNguvo/fUwCfbTwVky2m",
-      "firstName": "Franciszek",
-      "lastName": "Kot",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2ODA3ODYwMDg1OCIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJma290QGdtYWlsLmNvbSIsImlhdCI6MTc2ODA4Mjg2NCwiZXhwIjoxNzY4MDgyOTI0fQ.ifDyTtuC3VJAqWpznjgMyr4Rq4lbrYqN9DT74CBG9zE"
-    },
-    "user_1768078644514": {
-      "email": "rkowalsk@gmail.com",
-      "id": "user_1768078644514",
-      "password": "$2b$10$ibAqbq2g0tcJF.Wo2zekrO3xKr0Bf.efzBKgGj3tBB0wJlJlQ5u6K",
-      "firstName": "Renata",
-      "lastName": "Kowalska",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2ODA3ODY0NDUxNCIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJya293YWxza0BnbWFpbC5jb20iLCJpYXQiOjE3NjgwODI2NDAsImV4cCI6MTc2ODA4MjcwMH0.or3_DS8uoNj-JEEWFvznACc1Z60nt4j6qn0EBjrtvR8"
-    },
-    "user_1768994389220": {
-      "email": "domabu@gmail.com",
-      "id": "user_1768994389220",
-      "password": "$2b$10$sq/ULI1ZGKdwOXXH1mGUFuKIKOokIHMlXA2QYGTfWdNsBKY6K7ig2",
-      "firstName": "Dominika",
-      "lastName": "Bujnarowska",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2ODk5NDM4OTIyMCIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJkb21hYnVAZ21haWwuY29tIiwiaWF0IjoxNzY4OTk0NTM2LCJleHAiOjE3Njg5OTQ1OTZ9.pgevpQx9UPLu92joxxe3pyOZst3ErLpnsRDYQoZ8apM"
-    },
-    "user_1769260315119": {
-      "email": "kklimek@gmail.com",
-      "id": "user_1769260315119",
-      "password": "$2b$10$kfyRO7ZXbCrgoz5rwDitROOwv2dgkL2DFcT0lUJfkgwCFGnaJV0yO",
-      "firstName": "Krzysztof",
-      "lastName": "Klimek",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 860,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTI2MDMxNTExOSIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJra2xpbWVrQGdtYWlsLmNvbSIsImlhdCI6MTc2OTM2NzcxNCwiZXhwIjoxNzY5MzY3Nzc0fQ.O2DTmRaI45VFVsm9rtVRoTvicvVyKAIqZ8G1wCsF9qo"
-    },
-    "user_1769362889672": {
-      "email": "jmarek@gmail.com",
-      "id": "user_1769362889672",
-      "password": "$2b$10$.Jk9zdRAzL0MeavOU7uGdeioFKruFpTQErEG1CZLktWnYc75ha37S",
-      "firstName": "Janina",
-      "lastName": "Marek",
-      "role": "patient",
-      "pesel": "",
-      "phoneNumber": "",
-      "isBanned": false,
-      "activeRefreshToken": null,
-      "walletBalance": 1000,
-      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTM2Mjg4OTY3MiIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJqbWFyZWtAZ21haWwuY29tIiwiaWF0IjoxNzY5MzYyOTEyLCJleHAiOjE3NjkzNjI5NzJ9.MjdODb0kIPmghtBWyi6BvYgVV0wxBPFGX_X5cFOMTvQ"
+      "activeRefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTk2NzExMyIsImlhdCI6MTc2OTQ1NDE5OCwiZXhwIjoxNzcwMDU4OTk4fQ.q01psA93GYC7XtyvoJqg7JyzXBOjknJiKKPJfXjM8JQ",
+      "walletBalance": 930,
+      "activeAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXJfMTc2OTQ1MTk2NzExMyIsInJvbGUiOiJwYXRpZW50IiwiZW1haWwiOiJtZ29yc2thQGdtYWlsLmNvbSIsImlhdCI6MTc2OTQ1NDI5NywiZXhwIjoxNzY5NDU0MzU3fQ.iH5RE_KAr5hVS64YfRWtTwoOJ7KawtD5UHxcGyRbwa4"
     }
   },
   "absences": {
-    "abs_1767527184833_sr2qpo8ez": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-06T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "trzech króli",
-      "type": "ABSENCE",
-      "id": "abs_1767527184833_sr2qpo8ez"
-    },
-    "abs_1767533465708_tg9zjk52x": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-09T00:00:00.000Z",
+    "abs_1769454314540_a7li92vh6": {
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "date": "2026-02-07T00:00:00.000Z",
       "startTime": "00:00",
       "endTime": "23:59",
       "reason": "",
       "type": "ABSENCE",
-      "id": "abs_1767533465708_tg9zjk52x"
-    },
-    "abs_1767545032227_eg88gn7on": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-20T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767545032227_eg88gn7on"
-    },
-    "abs_1767545075597_v2f8l4qut": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-19T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767545075597_v2f8l4qut"
-    },
-    "abs_1767550796035_omtyjixo4": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-08T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767550796035_omtyjixo4"
-    },
-    "abs_1767643373889_mipmz1nbt": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-08T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767643373889_mipmz1nbt"
-    },
-    "abs_1767902624586_n5aslv0ke": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-26T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767902624586_n5aslv0ke"
-    },
-    "abs_1767903422566_nsdm2xeo3": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-23T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767903422566_nsdm2xeo3"
-    },
-    "abs_1767903948068_f34pm7me4": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-27T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767903948068_f34pm7me4"
-    },
-    "abs_1767907355753_r4px7l36p": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-05T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767907355753_r4px7l36p"
-    },
-    "abs_1767908309195_xd9e19jp9": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-12T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "powód",
-      "type": "ABSENCE",
-      "id": "abs_1767908309195_xd9e19jp9"
-    },
-    "abs_1767908353357_zkwvz8a9l": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-23T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767908353357_zkwvz8a9l"
-    },
-    "abs_1767910905709_6vj5umcdi": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-13T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "powód",
-      "type": "ABSENCE",
-      "id": "abs_1767910905709_6vj5umcdi"
-    },
-    "abs_1767912491278_qpu0gbu3c": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-16T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767912491278_qpu0gbu3c"
-    },
-    "abs_1767986689677_xs49ookr2": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-12T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767986689677_xs49ookr2"
-    },
-    "abs_1767988358400_8soht2yck": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-13T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767988358400_8soht2yck"
-    },
-    "abs_1767988760448_bz7j5mo13": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-20T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1767988760448_bz7j5mo13"
-    },
-    "abs_1768032427962_6azxnufse": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-01-30T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1768032427962_6azxnufse"
-    },
-    "abs_1768038451385_xh0rvdpdv": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-20T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "powód",
-      "type": "ABSENCE",
-      "id": "abs_1768038451385_xh0rvdpdv"
-    },
-    "abs_1768038483540_k79zd4mhp": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-02-20T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1768038483540_k79zd4mhp"
-    },
-    "abs_1768079828790_lx6q6d444": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-23T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1768079828790_lx6q6d444"
-    },
-    "abs_1768079835632_w7jzm6c4k": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-23T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1768079835632_w7jzm6c4k"
-    },
-    "abs_1768079969274_xvvyjdsqp": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-23T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1768079969274_xvvyjdsqp"
-    },
-    "abs_1768994536707_ve8vblh09": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "date": "2026-01-22T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "nie ma mnie",
-      "type": "ABSENCE",
-      "id": "abs_1768994536707_ve8vblh09"
-    },
-    "abs_1769260408316_87znuuhks": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-03-02T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1769260408316_87znuuhks"
-    },
-    "abs_1769261079258_ba53i08rh": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-03-16T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1769261079258_ba53i08rh"
-    },
-    "abs_1769367714553_hz730d85p": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "date": "2026-03-13T00:00:00.000Z",
-      "startTime": "00:00",
-      "endTime": "23:59",
-      "reason": "",
-      "type": "ABSENCE",
-      "id": "abs_1769367714553_hz730d85p"
+      "id": "abs_1769454314540_a7li92vh6"
     }
   },
   "availabilities": {
-    "avail_1767527117226_akxb3xi67": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "validFrom": "2026-01-05",
-      "validTo": "2026-01-30",
+    "avail_1769451587451_arfrckcwh": {
+      "doctorId": "doc_1769451420163_g53vqfyjo",
+      "validFrom": "2026-01-26",
+      "validTo": "2026-02-15",
       "weekdays": [
         1,
-        2,
-        5
-      ],
-      "timeRanges": [
-        {
-          "from": "08:00",
-          "to": "10:00"
-        },
-        {
-          "from": "11:00",
-          "to": "14:00"
-        }
-      ],
-      "id": "avail_1767527117226_akxb3xi67"
-    },
-    "avail_1767527145235_pihk55z7z": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "validFrom": "2026-01-08",
-      "validTo": "2026-01-08",
-      "weekdays": [
+        3,
+        5,
         4
       ],
       "timeRanges": [
         {
-          "from": "08:00",
-          "to": "13:30"
+          "from": "09:00",
+          "to": "14:00"
         }
       ],
-      "id": "avail_1767527145235_pihk55z7z"
+      "id": "avail_1769451587451_arfrckcwh"
     },
-    "avail_1767527167354_0pwdocd35": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "validFrom": "2026-01-05",
-      "validTo": "2026-01-30",
+    "avail_1769451702564_x7hnacfow": {
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "validFrom": "2026-01-26",
+      "validTo": "2026-02-15",
       "weekdays": [
-        1
-      ],
-      "timeRanges": [
-        {
-          "from": "17:00",
-          "to": "18:30"
-        }
-      ],
-      "id": "avail_1767527167354_0pwdocd35"
-    },
-    "avail_1767533453838_ivpxrlyt4": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "validFrom": "2026-01-07",
-      "validTo": "2026-01-07",
-      "weekdays": [
-        3
-      ],
-      "timeRanges": [
-        {
-          "from": "13:00",
-          "to": "15:00"
-        }
-      ],
-      "id": "avail_1767533453838_ivpxrlyt4"
-    },
-    "avail_1767985822986_7dlz27ax8": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "validFrom": "2026-01-12",
-      "validTo": "2026-02-20",
-      "weekdays": [
-        1,
         2,
-        5
+        6,
+        4
       ],
       "timeRanges": [
         {
@@ -594,124 +188,52 @@
           "to": "11:00"
         },
         {
-          "from": "13:00",
-          "to": "16:00"
+          "from": "12:00",
+          "to": "14:30"
         }
       ],
-      "id": "avail_1767985822986_7dlz27ax8"
-    },
-    "avail_1768080006955_fqct1w264": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "validFrom": "2026-01-22",
-      "validTo": "2026-01-22",
-      "weekdays": [
-        4
-      ],
-      "timeRanges": [
-        {
-          "from": "08:00",
-          "to": "12:00"
-        }
-      ],
-      "id": "avail_1768080006955_fqct1w264"
-    },
-    "avail_1768080101448_qgw349n8o": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "validFrom": "2026-01-21",
-      "validTo": "2026-01-21",
-      "weekdays": [
-        3
-      ],
-      "timeRanges": [
-        {
-          "from": "08:00",
-          "to": "12:00"
-        }
-      ],
-      "id": "avail_1768080101448_qgw349n8o"
-    },
-    "avail_1768080156973_0og6shi1d": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "validFrom": "2026-01-17",
-      "validTo": "2026-01-17",
-      "weekdays": [
-        6
-      ],
-      "timeRanges": [
-        {
-          "from": "08:00",
-          "to": "12:00"
-        }
-      ],
-      "id": "avail_1768080156973_0og6shi1d"
-    },
-    "avail_1768082030457_bjdcscblh": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "validFrom": "2026-02-17",
-      "validTo": "2026-02-17",
-      "weekdays": [
-        2
-      ],
-      "timeRanges": [
-        {
-          "from": "09:00",
-          "to": "12:00"
-        }
-      ],
-      "id": "avail_1768082030457_bjdcscblh"
-    },
-    "avail_1768082427583_2nzbd4mms": {
-      "doctorId": "doc_1767539694858_zp8pug6yo",
-      "validFrom": "2026-01-24",
-      "validTo": "2026-01-24",
-      "weekdays": [
-        6
-      ],
-      "timeRanges": [
-        {
-          "from": "08:00",
-          "to": "10:00"
-        }
-      ],
-      "id": "avail_1768082427583_2nzbd4mms"
-    },
-    "avail_1769260352484_mw46b78lg": {
-      "doctorId": "doc_1767527003678_37wu220so",
-      "validFrom": "2026-03-02",
-      "validTo": "2026-03-28",
-      "weekdays": [
-        1,
-        5,
-        3
-      ],
-      "timeRanges": [
-        {
-          "from": "09:00",
-          "to": "16:00"
-        }
-      ],
-      "id": "avail_1769260352484_mw46b78lg"
+      "id": "avail_1769451702564_x7hnacfow"
     }
   },
   "system_config": {
     "persistenceMode": "NONE"
   },
-  "reviews": [],
-  "notifications": [
+  "reviews": [
     {
-      "id": "notif_1769367714560_ik79gptw1",
-      "userId": "user_1769362889672",
-      "type": "ALERT",
-      "message": "Twoja wizyta w dniu 2026-03-13 została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.",
-      "timestamp": 1769367714559,
-      "read": false
+      "id": "rev_1769455100001_abc123xyz",
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "patientId": "user_1769451786516",
+      "patientName": "Kamil Stoch",
+      "rating": 5,
+      "comment": "Bardzo profesjonalne podejście. Pani doktor Katarzyna wyleczyła ząb bezboleśnie. Polecam!",
+      "createdAt": 1769455100000
     },
     {
-      "id": "notif_1769367714575_tscsxhivo",
-      "userId": "user_1769260315119",
+      "id": "rev_1769455200002_def456uvw",
+      "doctorId": "doc_1769451420163_g53vqfyjo",
+      "patientId": "user_1769451967113",
+      "patientName": "Maria Górska",
+      "rating": 4,
+      "comment": "Pan doktor Nowak to konkretny specjalista. Diagnoza trafna, choć na wizytę musiałam chwilę poczekać.",
+      "createdAt": 1769455200000
+    },
+    {
+      "id": "rev_1769455300003_ghi789rst",
+      "doctorId": "doc_1769451459474_xif2h764z",
+      "patientId": "user_1769451967113",
+      "patientName": "Maria Górska",
+      "rating": 5,
+      "comment": "Świetne podejście do pacjenta, zero stresu na fotelu dentystycznym.",
+      "createdAt": 1769455300000
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_1769454314544_e4i7jxy0k",
+      "userId": "user_1769451967113",
       "type": "ALERT",
-      "message": "Twoja wizyta w dniu 2026-03-13 została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.",
-      "timestamp": 1769367714574,
+      "message": "Twoja wizyta w dniu 2026-02-07 została odwołana przez lekarza z powodu nieobecności. Środki zostały zwrócone.",
+      "timestamp": 1769454314543,
       "read": false
     }
   ]

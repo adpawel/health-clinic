@@ -225,7 +225,7 @@ app.delete('/doctors/:id', authenticateToken, requireRole(['admin']), async (req
   res.sendStatus(200);
 });
 
-app.get('/users', authenticateToken, requireRole(['admin', 'patient']), async (req, res) => {
+app.get('/users', authenticateToken, requireRole(['admin', 'patient', 'doctor']), async (req, res) => {
   const dbUsers = await db.getUsers();
   
   const safeUsers = dbUsers.map(u => {

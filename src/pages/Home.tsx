@@ -60,7 +60,7 @@ const Home = () => {
      if (reviewToEdit) {
         await backend.updateReview(reviewToEdit.id, data);
      } else {
-        await backend.addReview({ ...data, doctorId: selectedDoctor.id }, user.id, user.firstName);
+        await backend.addReview({ ...data, doctorId: selectedDoctor.id }, user.id, `${user.firstName} ${user.lastName}`);
      }
   };
 

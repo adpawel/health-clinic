@@ -1,6 +1,6 @@
-# Medical Consultations App
+# health-clinic
 
-A full-stack web application for managing online medical consultations.
+Aplikacja full-stack do konsultacji medycznych online.
 
 Projekt został zrealizowany w ramach przedmiotu **Programowanie Aplikacji Webowych**.  
 Celem było stworzenie elastycznej aplikacji z możliwością dynamicznego wyboru backendu oraz różnymi strategiami autentykacji i persystencji sesji.
@@ -118,7 +118,7 @@ Zabezpieczenia:
 ## Uruchomienie
 
 ### Backend
-`cd backend`
+`cd server`
 
 `npm install`
 
@@ -126,8 +126,6 @@ Zabezpieczenia:
 
 
 ### Frontend
-
-`cd frontend`
 
 `npm install`
 

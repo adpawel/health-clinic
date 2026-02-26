@@ -1,73 +1,141 @@
-# React + TypeScript + Vite
+# Medical Consultations App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for managing online medical consultations.
 
-Currently, two official plugins are available:
+Projekt został zrealizowany w ramach przedmiotu **Programowanie Aplikacji Webowych**.  
+Celem było stworzenie elastycznej aplikacji z możliwością dynamicznego wyboru backendu oraz różnymi strategiami autentykacji i persystencji sesji.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Kluczowe funkcjonalności
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Role użytkowników
+- **Guest** – przeglądanie listy lekarzy
+- **Patient** – rezerwacja wizyt, koszyk, oceny i komentarze
+- **Doctor** – zarządzanie harmonogramem, dostępnością i absencjami
+- **Admin** – zarządzanie użytkownikami i lekarzami, banowanie, moderacja
 
-## Expanding the ESLint configuration
+### Harmonogram
+- widok tygodniowy (sloty 30 min)
+- definiowanie dostępności (cyklicznej i jednorazowej)
+- obsługa absencji
+- rezerwacje z walidacją konfliktów
+- anulowanie wizyt
+- koszyk z symulacją płatności
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Autentykacja i autoryzacja
+Aplikacja obsługuje dwa tryby autentykacji:
+- **Firebase Auth**
+- **Własna implementacja JWT (access + refresh token)**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Zaimplementowano:
+- role-based access control (RBAC)
+- ochrona tras po stronie frontendu i backendu
+- automatyczne odświeżanie tokenu (refresh flow)
+- opcjonalne wymuszenie jednej aktywnej sesji
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Architektura
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Frontend
+- React + TypeScript
+- Context API (zarządzanie stanem autoryzacji)
+- Chronione trasy
+- Interceptor HTTP do obsługi tokenów
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Backend (Node.js + Express)
+- REST API
+- Middleware autoryzacyjne
+- MongoDB (Atlas)
+- JWT (access + refresh tokens)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Dynamiczny wybór backendu
+
+Aplikacja umożliwia przełączanie źródła danych bez zmiany logiki komponentów.
+
+Dostępne tryby:
+- `json` – lokalny plik JSON
+- `firebase` – Firebase (Database + Auth)
+- `rest` – własny serwer REST API + MongoDB
+
+Warstwa serwisów korzysta ze wspólnego interfejsu, dzięki czemu zmiana backendu odbywa się konfiguracyjnie.
+
+---
+
+## Tryby persystencji logowania
+
+Obsługiwane 3 strategie:
+
+- **LOCAL** – użytkownik pozostaje zalogowany po zamknięciu przeglądarki (`localStorage`)
+- **SESSION** – sesja trwa do zamknięcia karty (`sessionStorage`)
+- **NONE** – dane trzymane tylko w pamięci (wylogowanie po odświeżeniu)
+
+---
+
+## Przykładowe endpointy (REST)
+`POST /auth/register`
+
+`POST /auth/login`
+
+`POST /auth/refresh`
+
+`GET /consultations`
+
+`POST /consultations`
+
+`PATCH /consultations/:id`
+
+`DELETE /consultations/:id`
+
+---
+
+Zabezpieczenia:
+- weryfikacja JWT
+- kontrola ról
+- ochrona operacji modyfikujących dane
+
+---
+
+## Technologie
+
+**Frontend**
+- React
+- TypeScript
+
+**Backend**
+- Node.js
+- Express
+- MongoDB
+
+**Alternatywnie**
+- Firebase (Auth + Database)
+
+---
+
+## Uruchomienie
+
+### Backend
+`cd backend`
+
+`npm install`
+
+`npm run dev`
+
+
+### Frontend
+
+`cd frontend`
+
+`npm install`
+
+`npm start`
+
+---
+
+Wymagane:
+- MongoDB Atlas URI (dla trybu `rest`)
+- Konfiguracja Firebase (dla trybu `firebase`)
+- Sekret JWT
